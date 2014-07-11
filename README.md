@@ -1,3 +1,15 @@
+# Features
+
+* Application can be run in a local http server, or emulated/released to Android/iOS
+* A lot of useful gulp tasks, like:
+  * `gulp` - watch for changes + livereload + http server + weinre debugger
+  * `gulp cordova:emulate:ios` - run application in iOS emulator
+  * `gulp cordova:run:android` - run application on Android's devise
+* Useful hooks and tweaks, which allow you to deploy your cordova app out-of-the-box
+* SASS + CoffeeScript + Jade combo
+* Support for multiple environments, like *development, staging, production* (configuration available in `gulpfile.coffee`)
+* Tests configured and working: unit (karma + mocha) and end to end (protractor)
+
 # Requirements
 
 * NodeJS
