@@ -1,0 +1,8 @@
+platforms/^.*
+node_modules
+assets/components
+www
+dist
+/keys
+.envrc
+npm-debug.log
