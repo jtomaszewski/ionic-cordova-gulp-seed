@@ -253,16 +253,10 @@ gulp.task 'test:e2e:server', (cb) ->
 
   phantomDefer.promise
 
-gulp.task 'test:e2e:prepare', (cb) ->
-  child_process.exec "rake test:seed RAILS_ENV=development", 
-    cwd: "../rails"
-  , (error, stdout, stderr) ->
-    cb(error)
-
 # You can run it like this:
 # `gulp test:e2e` - runs all e2e tests
 # `gulp test:e2e --debug --specs tests/map_test.coffee` - runs only one test, in debug mode
-gulp.task 'test:e2e', ['test:e2e:prepare'], ->
+gulp.task 'test:e2e', [], ->
   args = ['--baseUrl', "http://localhost:#{options.httpPort}"]
   args.push 'debug' if gulp.env.debug
 
@@ -271,7 +265,7 @@ gulp.task 'test:e2e', ['test:e2e:prepare'], ->
 
   gulp.src(protractorTests)
     .pipe(protractor.protractor({
-      configFile: "tests/protractor.config.js",
+      configFile: "test/e2e/protractor.config.js",
       args: args
     }))
     .on('error', (notify.onError((error) -> error.message)))

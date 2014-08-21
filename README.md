@@ -62,7 +62,6 @@ gulp test:unit --browsers Chrome # or using Google Chrome
 #### e2e tests (protractor & selenium)
 
 ```
-cd ../rails && bin/rails s # make sure your rails server is running in the background
 gulp # your www/ directory should be built and served at :4400 port
 node_modules/.bin/webdriver-manager start & # run selenium server in the background
 
