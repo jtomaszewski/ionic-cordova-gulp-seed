@@ -363,6 +363,7 @@ gulp.task "cordova:clear", shell.task('rm -rf plugins/* platforms/*')
   gulp.task "cordova:build-release:#{platform}", ["cordova:platform-add:#{platform}", "build"], shell.task("env \
       BUNDLE_VERSION=\"#{GLOBALS.BUNDLE_VERSION}\" \
       BUNDLE_NAME=\"#{GLOBALS.BUNDLE_NAME}\" \
+      IOS_PROVISIONING_PROFILE=\"#{GLOBALS.IOS_PROVISIONING_PROFILE}\" \
       node_modules/.bin/cordova build #{platform} --release --device")
 
 
