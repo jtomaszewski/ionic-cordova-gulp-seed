@@ -29,7 +29,7 @@ function install_plugin {
 install_plugin "android ios" org.apache.cordova.splashscreen || exit $?
 
 # Created by authors of Ionic, fixes keyboard issues on iOS
-install_plugin "android ios" vendor/plugins/ionic-plugins-keyboard || exit $?
+install_plugin "android ios" https://github.com/driftyco/ionic-plugins-keyboard.git || exit $?
 
 
 echo "Plugins have been installed."
