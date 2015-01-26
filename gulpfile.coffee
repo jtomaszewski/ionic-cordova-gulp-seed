@@ -177,7 +177,6 @@ destinations =
     "#{GLOBALS.BUILD_DIR}/fonts/**"
     "#{GLOBALS.BUILD_DIR}/img/**"
     "#{GLOBALS.BUILD_DIR}/js/**"
-    "#{GLOBALS.BUILD_DIR}/templates/**"
     "#{GLOBALS.BUILD_DIR}/*.html"
   ]
 
@@ -246,8 +245,8 @@ gulp.task 'scripts:vendor', ->
     .pipe(gulp.dest(destinations.scripts))
 
 
-# Define scripts:app, scripts:bootstrap tasks
-['app', 'bootstrap'].forEach (scriptsName) ->
+# Define scripts:app, scripts:app_run, scripts:bootstrap tasks
+['app', 'app_run', 'bootstrap'].forEach (scriptsName) ->
   gulp.task "scripts:#{scriptsName}", ->
     gulp.src(paths.scripts[scriptsName])
       .pipe((plumber (error) ->
@@ -264,7 +263,7 @@ gulp.task 'scripts:vendor', ->
       .pipe(gulp.dest(destinations.scripts))
 
 
-gulp.task 'scripts', ['scripts:vendor', 'scripts:app', 'scripts:bootstrap']
+gulp.task 'scripts', ['scripts:vendor', 'scripts:app', 'scripts:app_run', 'scripts:bootstrap']
 
 
 gulp.task 'templates', ->
