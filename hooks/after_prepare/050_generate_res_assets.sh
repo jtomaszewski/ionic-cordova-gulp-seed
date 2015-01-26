@@ -7,7 +7,7 @@ if test ! -d "hooks"; then
   exit 1
 fi
 
-LOGO="assets/img/logo-square.svg"
+LOGO="assets/img/logo-square.png"
 PORTRAIT_SPLASH="assets/img/splash-portrait.png"
 LANDSCAPE_SPLASH="assets/img/splash-landscape.png"
 
