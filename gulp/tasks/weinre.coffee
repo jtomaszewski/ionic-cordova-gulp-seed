@@ -3,8 +3,8 @@ gutil = require 'gulp-util'
 open = require 'open'
 childProcess = require 'child_process'
 
-{GLOBALS, PUBLIC_GLOBALS} = require "../globals.coffee"
-{PATHS, DESTINATIONS} = require "../paths.coffee"
+{GLOBALS, PUBLIC_GLOBALS} = require "../globals"
+{PATHS, DESTINATIONS} = require "../paths"
 
 gulp.task "weinre", ->
   [weinreHost, weinrePort] = GLOBALS.WEINRE_ADDRESS.split(":")

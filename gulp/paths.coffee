@@ -1,4 +1,4 @@
-{GLOBALS} = require "./globals.coffee"
+{GLOBALS} = require "./globals"
 
 PATHS =
   assets: ['assets/**', '!assets/**/*.ejs']

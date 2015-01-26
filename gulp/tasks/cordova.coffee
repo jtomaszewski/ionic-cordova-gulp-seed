@@ -1,8 +1,8 @@
 gulp = require 'gulp'
 shell = require 'gulp-shell'
 
-{GLOBALS, PUBLIC_GLOBALS} = require "../globals.coffee"
-{PATHS, DESTINATIONS} = require "../paths.coffee"
+{GLOBALS, PUBLIC_GLOBALS} = require "../globals"
+{PATHS, DESTINATIONS} = require "../paths"
 
 
 # Clean all cordova platforms, so they will need to be generated again.

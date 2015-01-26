@@ -21,8 +21,9 @@
 # How to install
 
 ```
-g clone jtomaszewski/ionicstarter-mobile
+git clone jtomaszewski/ionicstarter-mobile
 cd ionicstarter-mobile
+git submodule update --init --recursive
 
 # install dependencies
 npm install

@@ -1,8 +1,8 @@
 gulp = require 'gulp'
 runSequence = require 'run-sequence'
 
-{GLOBALS, PUBLIC_GLOBALS} = require "../globals.coffee"
-{PATHS, DESTINATIONS} = require "../paths.coffee"
+{GLOBALS, PUBLIC_GLOBALS} = require "../globals"
+{PATHS, DESTINATIONS} = require "../paths"
 
 
 GLOBALS.AVAILABLE_PLATFORMS.forEach (platform) ->

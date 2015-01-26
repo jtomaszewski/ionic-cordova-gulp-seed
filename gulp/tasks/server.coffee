@@ -4,8 +4,8 @@ http = require 'http'
 open = require 'open'
 ecstatic = require 'ecstatic'
 
-{GLOBALS, PUBLIC_GLOBALS} = require "../globals.coffee"
-{PATHS, DESTINATIONS} = require "../paths.coffee"
+{GLOBALS, PUBLIC_GLOBALS} = require "../globals"
+{PATHS, DESTINATIONS} = require "../paths"
 
 gulp.task 'server', ->
   http.createServer(ecstatic(root: GLOBALS.BUILD_DIR)).listen(GLOBALS.HTTP_SERVER_PORT)
