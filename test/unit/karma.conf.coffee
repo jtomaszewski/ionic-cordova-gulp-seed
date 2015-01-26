@@ -8,18 +8,17 @@ module.exports = (config) ->
       "www/js/vendor.js"
       "assets/components/angular-mocks/angular-mocks.js"
 
-      "www/templates/**/*.html"
-
       "test/unit/tests-config.coffee"
 
       # "www/js/app.js"
       # This is the copy from gulpfile.coffee - you need to keep it up to date.
       'app/js/bootstrap.coffee'
       'app/js/app_config.coffee'
+      "www/js/app_templates.js"
       'app/js/*/**/*.coffee'
       'app/js/routes.coffee'
       'app/js/app_run.coffee'
-      
+
       "test/unit/helpers/**/*.coffee"
       "test/unit/**/*.coffee"
     ]
@@ -36,17 +35,12 @@ module.exports = (config) ->
     autoWatch: true
 
     # f.e. Chrome, PhantomJS
-    browsers: ['Chrome']
+    browsers: ['PhantomJS']
 
     reporters: ['osx', 'progress']
 
     preprocessors:
       '**/*.coffee': ['coffee']
-      'www/templates/**/*.html': ['ng-html2js']
-
-    ngHtml2JsPreprocessor:
-      stripPrefix: 'www/'
-      moduleName: 'ionicstarter-templates'
 
     coffeePreprocessor:
       options:

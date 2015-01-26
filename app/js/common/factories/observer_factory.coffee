@@ -1,11 +1,9 @@
 angular.module 'ionicstarter'
 
-.factory 'ObserverFactory', ->
+.factory 'ObserverFactory', ($rootScope) ->
   class ObserverFactory
-    constructor: ->
-      @listeners = {}
-
     on: (eventName, listener) ->
+      @listeners ?= {}
       @listeners[eventName] ?= []
       @listeners[eventName].push listener
 
@@ -14,8 +12,7 @@ angular.module 'ionicstarter'
       @on eventName, listener
 
     off: (eventName, listener) ->
-      return unless @listeners[eventName]
-
+      return unless @listeners?[eventName]
       return delete @listeners[eventName] if !listener
 
       for i, v in @listeners[eventName]
@@ -24,10 +21,12 @@ angular.module 'ionicstarter'
           break
 
     fireEvent: (eventName, params...) ->
-      return unless @listeners[eventName]?.length
+      return unless @listeners?[eventName]?.length
 
       for v in @listeners[eventName]
         v.apply(@, params)
         @off eventName, v if v.__once__
+
+      $rootScope.$apply() unless $rootScope.$$phase
 
 

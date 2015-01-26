@@ -31,5 +31,8 @@ install_plugin "android ios" org.apache.cordova.splashscreen || exit $?
 # Created by authors of Ionic, fixes keyboard issues on iOS
 install_plugin "android ios" vendor/plugins/ionic-plugins-keyboard || exit $?
 
+# Use native SDK of google analytics (see angulartics-ga-cordova plugin)
+# install_plugin "android ios" vendor/plugins/GAPlugin || exit $?
+
 
 echo "Plugins have been installed."

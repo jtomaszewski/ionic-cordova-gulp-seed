@@ -6,19 +6,14 @@ exports.config = {
 
   seleniumAddress: 'http://localhost:4444/wd/hub',
 
-  capabilities: [
-    {
-      'browserName': 'chrome'
-    },
-    {
-      'browserName': 'phantomjs'
-    }
-  ],
+  capabilities: {
+    'browserName': 'chrome'
+  },
 
-  specs: ['./**/*.coffee'],
+  specs: ['./**/*_test.coffee'],
 
   jasmineNodeOpts: {
-    showColors: true, 
+    showColors: true,
   },
 
   onPrepare: function() {
@@ -27,7 +22,7 @@ exports.config = {
     })
 
     afterEach(function(){
-      protractor.getInstance().manage().deleteAllCookies();
+      browser.manage().deleteAllCookies();
       TestHelper.localStorage.clear();
     });
   }

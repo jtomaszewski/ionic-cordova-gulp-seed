@@ -18,13 +18,13 @@ $ionicons-font-path: "../components/ionic/release/fonts";
 @import "../../assets/components/ionic/scss/tabs";
 @import "../../assets/components/ionic/scss/menu";
 @import "../../assets/components/ionic/scss/modal";
+@import "../../assets/components/ionic/scss/popover";
 @import "../../assets/components/ionic/scss/popup";
 @import "../../assets/components/ionic/scss/loading";
 @import "../../assets/components/ionic/scss/items";
 @import "../../assets/components/ionic/scss/list";
 @import "../../assets/components/ionic/scss/badge";
 @import "../../assets/components/ionic/scss/slide-box";
-@import "../../assets/components/ionic/scss/split-pane";
 
 // Forms
 @import "../../assets/components/ionic/scss/form";
@@ -40,7 +40,10 @@ $ionicons-font-path: "../components/ionic/release/fonts";
 @import "../../assets/components/ionic/scss/button-bar";
 
 // Util
-@import "../../assets/components/ionic/scss/animations";
 @import "../../assets/components/ionic/scss/grid";
 @import "../../assets/components/ionic/scss/util";
 @import "../../assets/components/ionic/scss/platform";
+
+// Animations
+@import "../../assets/components/ionic/scss/animations";
+@import "../../assets/components/ionic/scss/transitions";

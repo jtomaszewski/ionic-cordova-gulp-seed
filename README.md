@@ -9,12 +9,13 @@
 * SASS + CoffeeScript + Jade combo
 * Support for multiple environments, like *development, staging, production* (configuration available in `gulpfile.coffee`)
 * Tests configured and working: unit (karma + mocha) and end to end (protractor)
+* Rollbar support (configured, working in angular functions and support for uploading the sourcemaps to Rollbar server)
 
 # Requirements
 
 * NodeJS
-* Cordova 3.5+
-* Android or iOS SDK installed and [configured](http://docs.phonegap.com/en/3.3.0/guide_platforms_index.md.html#Platform%20Guides) (required only if you want to deploy the app to native mobile platforms - you can run `gulp` server without that)
+* Cordova 4.2+
+* Android or iOS SDK installed and [configured](http://docs.phonegap.com/en/4.0.0/guide_platforms_index.md.html#Platform%20Guides) (required only if you want to deploy the app to native mobile platforms - you can run `gulp` server without that)
 
 
 # How to install
@@ -73,8 +74,8 @@ gulp test:e2e # finally, run e2e tests
 
 I recommend [tmux](http://tmux.sourceforge.net/) for handling multiple terminal tabs/windows ;)
 
-1. Copy `.envrc.android-sample` or `.envrc.ios-sample` to `.envrc` and configure it. 
-  
+1. Copy `.envrc.android-sample` or `.envrc.ios-sample` to `.envrc` and configure it.
+
   * Ofcourse, if you're a Mac user and you can compile both Android and iOS on the same machine, you can include all the variables from both of these files in only one `.envrc` .
 
   * Also, make sure you have all the keys and certificates needed stored in `keys/android/` and `keys/ios/`:
@@ -113,6 +114,6 @@ First, generate the certificate keys:
 Then, generate the application and deploy it to the webserver with:
 
 ```
-gulp release --env=[staging|production]
+gulp release --env=[staging|production] --platform [ios|android]
 ```
 

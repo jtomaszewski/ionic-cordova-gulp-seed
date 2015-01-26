@@ -1,4 +1,4 @@
-module.exports =  
+module.exports =
 
   # Shortcut-helper to automatically make the user signed in the application.
   signIn: ->
@@ -8,16 +8,16 @@ module.exports =
   # localStorage helpers.
   localStorage:
     setItem: (key, value) ->
-      protractor.getInstance().executeScript "window.localStorage.setItem(#{JSON.stringify(key)}, #{JSON.stringify(value)});"
+      browser.executeScript "window.localStorage.setItem(#{JSON.stringify(key)}, #{JSON.stringify(value)});"
 
     getItem: (key) ->
-      protractor.getInstance().executeScript "window.localStorage.getItem(#{JSON.stringify(key)});"
+      browser.executeScript "window.localStorage.getItem(#{JSON.stringify(key)});"
 
     removeItem: (key) ->
-      protractor.getInstance().executeScript "window.localStorage.removeItem(#{JSON.stringify(key)});"
+      browser.executeScript "window.localStorage.removeItem(#{JSON.stringify(key)});"
 
     clear: ->
-      protractor.getInstance().executeScript "window.localStorage.clear();"
+      browser.executeScript "window.localStorage.clear();"
 
     setObject: (key, value) ->
       @setItem(key, JSON.stringify(value))

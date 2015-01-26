@@ -1,13 +1,13 @@
 #!/bin/sh
-# 
+#
 # Compile image resources (images and splashscreens) from assets/img/ to assets/img/res/ dasrectory.
 
-if test ! -d "platforms"; then
+if test ! -d "hooks"; then
   echo "You must run it in main directory of cordova project."
   exit 1
 fi
 
-LOGO="assets/img/logo-square.png"
+LOGO="assets/img/logo-square.svg"
 PORTRAIT_SPLASH="assets/img/splash-portrait.png"
 LANDSCAPE_SPLASH="assets/img/splash-landscape.png"
 
@@ -80,6 +80,14 @@ if test -d "platforms/ios"; then
   convert $LOGO -resize "144x144" "$BUNDLE_PATH/Resources/icons/icon-72@2x.png"
   convert $LOGO -resize "76x76" "$BUNDLE_PATH/Resources/icons/icon-76.png"
   convert $LOGO -resize "152x152" "$BUNDLE_PATH/Resources/icons/icon-76@2x.png"
+
+  convert $LOGO -resize "29x29" "$BUNDLE_PATH/Resources/icons/icon-small.png"
+  convert $LOGO -resize "58x58" "$BUNDLE_PATH/Resources/icons/icon-small@2x.png"
+  convert $LOGO -resize "40x40" "$BUNDLE_PATH/Resources/icons/icon-40.png"
+  convert $LOGO -resize "80x80" "$BUNDLE_PATH/Resources/icons/icon-40@2x.png"
+  convert $LOGO -resize "50x50" "$BUNDLE_PATH/Resources/icons/icon-50.png"
+  convert $LOGO -resize "100x100" "$BUNDLE_PATH/Resources/icons/icon-50@2x.png"
+  convert $LOGO -resize "60x60" "$BUNDLE_PATH/Resources/icons/icon-60.png"
 
   convert $PORTRAIT_SPLASH -resize "640x1136^" \
     -gravity center -crop 640x1136+0+0 +repage\

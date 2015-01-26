@@ -2,12 +2,10 @@
 #   bail: false
 #   ignoreLeaks: true
 
-window.GLOBALS = 
+window.GLOBALS =
   ENV: 'test'
-  BACKEND_URL: ''
 
 beforeEach module('ionicstarter')
-beforeEach module('ionicstarter-templates')
 
 afterEach ->
   inject ($httpBackend) ->

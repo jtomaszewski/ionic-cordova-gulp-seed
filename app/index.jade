@@ -7,19 +7,40 @@ html
 
     //- fix: see:
     //- http://stackoverflow.com/questions/19110144/ios7-issues-with-webview-focus-when-using-keyboard-html/19182670#19182670
-    //- https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html 
+    //- https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
     //- This seems however like it did worked only on iOS pre-7
     //- http://blogs.telerik.com/appbuilder/posts/13-11-07/everything-hybrid-web-apps-need-to-know-about-the-status-bar-in-ios7
     meta(name="apple-mobile-web-app-capable" content="yes")
     meta(name="apple-mobile-web-app-status-bar-style" content="white-translucent")
 
-    link(href='css/app.css?v=#{GLOBALS.CACHE_TAG}', rel='stylesheet')
+    link(href='css/app.css?v=#{GLOBALS.DEPLOY_TIME}', rel='stylesheet')
 
     link(rel="icon", type="image/png", href="img/favicon.png")
     link(rel="apple-touch-icon", href="img/favicon.png" )
 
+    //- notify about all errors
+    -if (GLOBALS.ROLLBAR_CLIENT_ACCESS_TOKEN)
+      script(type="text/javascript").
+        var _rollbarConfig = {
+            accessToken: "#{GLOBALS.ROLLBAR_CLIENT_ACCESS_TOKEN}",
+            captureUncaught: true,
+            payload: {
+              environment: "#{GLOBALS.ENV}",
+              client: {
+                javascript: {
+                  source_map_enabled: true,
+                  code_version: "#{GLOBALS.CODE_VERSION}",
+                  // Optionally have Rollbar guess which frames the error was thrown from
+                  // when the browser does not provide line and column numbers.
+                  guess_uncaught_frames: true
+                }
+              }
+            }
+        };
+      script(src="js/rollbar.js")
+
     //- Add google analytics, if available.
-    //- NOTE: to make it work on Cordova, 
+    //- NOTE: to make it work on Cordova,
     //-   you will also need angulartics and cordova google-analytics-plugin.
     -if (GLOBALS.GOOGLE_ANALYTICS_ID)
       script(type="text/javascript").
@@ -34,24 +55,24 @@ html
     script.
       GLOBALS = !{JSON.stringify(GLOBALS)};
 
-    script(src="js/vendor.js?v=#{GLOBALS.CACHE_TAG}")
-    script(src="js/bootstrap.js?v=#{GLOBALS.CACHE_TAG}")
-    script(src="js/app.js?v=#{GLOBALS.CACHE_TAG}")
+    script(src="js/vendor.js?v=#{GLOBALS.DEPLOY_TIME}")
+    script(src="js/bootstrap.js?v=#{GLOBALS.DEPLOY_TIME}")
+    script(src="js/app.js?v=#{GLOBALS.DEPLOY_TIME}")
 
     script(id="cordova-js" src="cordova.js")
     //- If you need to include any cordova plugins' js files, add them here:
     //- script(id="cdv-plugin-fb-connect-js" src="cdv-plugin-fb-connect.js")
-      
-  body(animation='slide-left-right-ios7')
+
+  body
     //
             The nav bar that will be updated as we navigate between views
             Additional attributes set its look, nav-bar animation and icons
-            Icons provided by Ionicons: http://ionicons.com/ 
-          
-    ion-nav-bar.bar-positive(animation='nav-title-slide-ios7', back-button-type='button-icon', back-button-icon='ion-ios7-arrow-back')
+            Icons provided by Ionicons: http://ionicons.com/
+
+    ion-nav-bar.bar-positive
     //
             The views will be rendered in the <nav-view> directive below
             Templates are in the /templates folder (but you could also
             have templates inline in this html file if you'd like).
-          
+
     ion-nav-view
