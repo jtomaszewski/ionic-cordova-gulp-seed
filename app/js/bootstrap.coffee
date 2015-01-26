@@ -30,16 +30,5 @@ Storage::getObject = (key) ->
 
 # ==> Some app-wide useful globals.
 window.GLOBALS  ?= {}
-window._RIPPLE  = false
-window._CORDOVA = !location.hostname # on cordova, location.hostname is empty
 ionic.Platform.ready ->
   console.log 'ionic.Platform is ready!' unless GLOBALS.ENV == "test"
-  window._RIPPLE  = window.tinyHippos != undefined
-  window._CORDOVA = window.cordova != undefined
-
-# document.addEventListener "deviceready", ->
-#   # Make ripple think that a back button handler has already been attached
-#   if window.tinyHippos != undefined
-#     cordova.addDocumentEventHandler('backbutton')
-# , true
-  

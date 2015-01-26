@@ -45,7 +45,6 @@
     "protractor": "^1.6.1",
     "protractor-coffee-preprocessor": "0.0.1",
     "q": "^1.0.0",
-    "ripple-emulator": "~0.9.20",
     "run-sequence": "~0.3.6",
     "weinre": "^2.0.0-pre-HH0SN197"
   }

@@ -7,7 +7,6 @@ coffee        = require 'gulp-coffee'
 jade          = require 'gulp-jade'
 livereload    = require 'gulp-livereload'
 changed       = require 'gulp-changed'
-ripple        = require 'ripple-emulator'
 open          = require 'open'
 http          = require 'http'
 path          = require 'path'
@@ -42,6 +41,7 @@ ENV_GLOBALS =
     ANGULAR_APP_NAME: "ionicstarter"
     BUILD_DIR: "www"
     CORDOVA_PLATFORM: null
+    HTTP_SERVER_PORT: 4400
     OPEN_IN_BROWSER: true
     UPLOAD_SOURCEMAPS_TO_ROLLBAR: false
 
@@ -158,6 +158,8 @@ paths =
       'app/js/app_config.coffee' # define application's angular module; add some native/global js variables
       'app/js/*/**/*.coffee'  # include all angular submodules (like controllers, directives, services)
       'app/js/routes.coffee'  # app.config - routes
+    ]
+    app_run: [
       'app/js/app_run.coffee' # app.config; app.run
     ]
     tests:
@@ -179,10 +181,6 @@ destinations =
     "#{GLOBALS.BUILD_DIR}/js/**"
     "#{GLOBALS.BUILD_DIR}/*.html"
   ]
-
-options =
-  httpPort: 4400
-  riddlePort: 4400
 
 
 gulp.task 'clean', ->
@@ -324,7 +322,7 @@ gulp.task 'test:e2e:server', (cb) ->
 # `gulp test:e2e` - runs all e2e tests
 # `gulp test:e2e --debug --specs test/e2e/intro_test.coffee` - runs only one test, in debug mode
 gulp.task 'test:e2e', ->
-  args = ['--baseUrl', "http://localhost:#{options.httpPort}"]
+  args = ['--baseUrl', "http://localhost:#{GLOBALS.HTTP_SERVER_PORT}"]
   args.push 'debug' if gulp.env.debug
 
   protractorTests = paths.scripts.tests.e2e
@@ -366,20 +364,11 @@ gulp.task 'livereload', ->
     livereloadServer.changed(file.path)
 
 
-gulp.task 'emulator', ->
-  ripple.emulate.start(options)
-  gutil.log gutil.colors.blue "Ripple-Emulator listening on #{options.ripplePort}"
-  if +GLOBALS.OPEN_IN_BROWSER
-    url = "http://localhost:#{options.ripplePort}/?enableripple=cordova-3.0.0-HVGA"
-    open(url)
-    gutil.log gutil.colors.blue "Opening #{url} in the browser..."
-
-
 gulp.task 'server', ->
-  http.createServer(ecstatic(root: GLOBALS.BUILD_DIR)).listen(options.httpPort)
-  gutil.log gutil.colors.blue "HTTP server listening on #{options.httpPort}"
+  http.createServer(ecstatic(root: GLOBALS.BUILD_DIR)).listen(GLOBALS.HTTP_SERVER_PORT)
+  gutil.log gutil.colors.blue "HTTP server listening on #{GLOBALS.HTTP_SERVER_PORT}"
   if +GLOBALS.OPEN_IN_BROWSER
-    url = "http://localhost:#{options.httpPort}/"
+    url = "http://localhost:#{GLOBALS.HTTP_SERVER_PORT}/"
     open(url)
     gutil.log gutil.colors.blue "Opening #{url} in the browser..."
 
