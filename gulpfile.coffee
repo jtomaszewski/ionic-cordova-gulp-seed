@@ -160,9 +160,10 @@ paths =
       'app/js/routes.coffee'  # app.config - routes
       'app/js/app_run.coffee' # app.config; app.run
     ]
-    tests: [
-      'test/**/*.coffee'
-    ]
+    tests:
+      e2e: [
+        'test/e2e/*_test.coffee'
+      ]
   templates: ['app/**/*.jade']
 
 destinations =
@@ -322,12 +323,12 @@ gulp.task 'test:e2e:server', (cb) ->
 
 # You can run it like this:
 # `gulp test:e2e` - runs all e2e tests
-# `gulp test:e2e --debug --specs test/map_test.coffee` - runs only one test, in debug mode
+# `gulp test:e2e --debug --specs test/e2e/intro_test.coffee` - runs only one test, in debug mode
 gulp.task 'test:e2e', ->
   args = ['--baseUrl', "http://localhost:#{options.httpPort}"]
   args.push 'debug' if gulp.env.debug
 
-  protractorTests = paths.scripts.tests
+  protractorTests = paths.scripts.tests.e2e
   protractorTests = gulp.env.specs.split(',') if gulp.env.specs
 
   gulp.src(protractorTests)
