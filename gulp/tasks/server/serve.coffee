@@ -12,5 +12,5 @@ gulp.task 'serve', ->
 
   if +GLOBALS.OPEN_IN_BROWSER
     url = "http://localhost:#{GLOBALS.HTTP_SERVER_PORT}/"
-    open(url)
+    open(url + "?v=#{GLOBALS.DEPLOY_TIME}")
     gutil.log gutil.colors.blue "Opening #{url} in the browser..."
