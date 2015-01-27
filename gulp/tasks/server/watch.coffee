@@ -9,6 +9,7 @@ gulp.task 'watch', ->
     gulp.watch(PATHS.watched_assets, ['assets'])
   gulp.watch(PATHS.assets_ejs, ['assets:ejs'])
   gulp.watch(PATHS.scripts.app, ['scripts:app'])
+  gulp.watch(PATHS.scripts.app_run, ['scripts:app_run'])
   gulp.watch(PATHS.scripts.bootstrap, ['scripts:bootstrap'])
   gulp.watch(PATHS.scripts.vendor, ['scripts:vendor'])
   gulp.watch(PATHS.styles, ['styles'])
