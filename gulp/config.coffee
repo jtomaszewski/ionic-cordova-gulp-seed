@@ -113,6 +113,7 @@ module.exports = new class GulpConfig
     #
     # The filtered globals will be available under GulpConfig.PUBLIC_GLOBALS.
     @_PUBLIC_GLOBALS_KEYS = [
+      "ANGULAR_APP_NAME"
       "BUNDLE_NAME"
       "BUNDLE_VERSION"
       "CODE_VERSION"
