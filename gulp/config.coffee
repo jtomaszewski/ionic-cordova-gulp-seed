@@ -160,14 +160,15 @@ module.exports = new class GulpConfig
           e2e: [
             'test/e2e/*_test.coffee'
           ]
-      templates: ['app/**/*.jade']
+      templates: ['app/templates/**/*.jade']
+      views: ['app/**/*.jade', '!app/templates/**/*.jade']
     }
 
     @DESTINATIONS = {
       assets: "#{@GLOBALS.BUILD_DIR}"
       styles: "#{@GLOBALS.BUILD_DIR}/css"
       scripts: "#{@GLOBALS.BUILD_DIR}/js"
-      templates: "#{@GLOBALS.BUILD_DIR}"
+      views: "#{@GLOBALS.BUILD_DIR}"
       livereload: [
         "#{@GLOBALS.BUILD_DIR}/**/*"
         "!#{@GLOBALS.BUILD_DIR}/config.xml"

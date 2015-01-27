@@ -22,4 +22,5 @@ gulp.task "build", (cb) ->
       "styles"
       "scripts"
       "templates"
+      "views"
     ], cb

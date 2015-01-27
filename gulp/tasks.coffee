@@ -5,6 +5,7 @@ require "./tasks/build/assets"
 require "./tasks/build/styles"
 require "./tasks/build/scripts"
 require "./tasks/build/templates"
+require "./tasks/build/views"
 require "./tasks/build/build"
 
 require "./tasks/test/e2e"

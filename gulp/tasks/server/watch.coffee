@@ -13,3 +13,4 @@ gulp.task 'watch', ->
   gulp.watch(PATHS.scripts.vendor, ['scripts:vendor'])
   gulp.watch(PATHS.styles, ['styles'])
   gulp.watch(PATHS.templates, ['templates'])
+  gulp.watch(PATHS.views, ['views'])
