@@ -151,9 +151,6 @@ module.exports = new class GulpConfig
           "assets/components/angulartics/src/angulartics-ga.js"
           "assets/components/angulartics/src/angulartics-ga-cordova.js"
         ]
-        bootstrap: [
-          'app/js/bootstrap.coffee'
-        ]
         app: [
           'app/js/config/**/*.coffee' # initialize & configure the angular's app
           'app/js/*/**/*.coffee'      # include all angular submodules (like controllers, directives, services)

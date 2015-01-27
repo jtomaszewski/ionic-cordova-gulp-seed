@@ -4,6 +4,7 @@ app = angular.module(GLOBALS.ANGULAR_APP_NAME)
 # Run the app only after cordova has been initialized
 # (this is why we don't include ng-app in the index.jade)
 ionic.Platform.ready ->
+  console.log 'ionic.Platform is ready! Running `angular.bootstrap()`...' unless GLOBALS.ENV == "test"
   angular.bootstrap document, [GLOBALS.ANGULAR_APP_NAME]
 
 

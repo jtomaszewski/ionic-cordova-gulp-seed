@@ -13,7 +13,6 @@ module.exports = (config) ->
       # "www/js/app.js"
       # This is a concatenated list of all scripts from gulpfile.coffee
       # (we need to keep it up to date with it).
-      'app/js/bootstrap.coffee'
       'app/js/config/**/*.coffee'
       'app/js/*/**/*.coffee'
       'app/js/routes.coffee'
