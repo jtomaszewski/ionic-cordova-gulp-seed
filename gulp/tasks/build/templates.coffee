@@ -22,7 +22,8 @@ gulp.task 'templates', ->
     .on('error', notify.onError((error) -> error.message))
 
     .pipe(templateCache("app_templates.js", {
-      module: GLOBALS.ANGULAR_APP_NAME
+      standalone: true
+      module: "#{GLOBALS.ANGULAR_APP_NAME}.templates"
       base: (file) ->
         file.path
           .replace(path.resolve("./"), "")
