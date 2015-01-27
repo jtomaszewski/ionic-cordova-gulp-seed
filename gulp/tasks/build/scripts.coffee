@@ -7,8 +7,8 @@ sourcemaps = require 'gulp-sourcemaps'
 rollbar = require 'gulp-rollbar'
 gulpIf = require 'gulp-if'
 
-{GLOBALS, PUBLIC_GLOBALS} = require "../globals"
-{PATHS, DESTINATIONS} = require "../paths"
+{GLOBALS, PUBLIC_GLOBALS} = require "../../globals"
+{PATHS, DESTINATIONS} = require "../../paths"
 
 
 uploadSourcemapsToRollbar = ->
