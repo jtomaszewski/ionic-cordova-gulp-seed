@@ -169,12 +169,8 @@ module.exports = new class GulpConfig
       scripts: "#{@GLOBALS.BUILD_DIR}/js"
       templates: "#{@GLOBALS.BUILD_DIR}"
       livereload: [
-        "#{@GLOBALS.BUILD_DIR}/assets/**"
-        "#{@GLOBALS.BUILD_DIR}/css/**"
-        "#{@GLOBALS.BUILD_DIR}/fonts/**"
-        "#{@GLOBALS.BUILD_DIR}/img/**"
-        "#{@GLOBALS.BUILD_DIR}/js/**"
-        "#{@GLOBALS.BUILD_DIR}/*.html"
+        "#{@GLOBALS.BUILD_DIR}/**/*"
+        "!#{@GLOBALS.BUILD_DIR}/config.xml"
       ]
     }
 

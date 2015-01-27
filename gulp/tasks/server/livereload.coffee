@@ -4,6 +4,9 @@ livereload = require 'gulp-livereload'
 {GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
 gulp.task 'livereload', ->
-  livereloadServer = livereload()
+  livereload.listen({
+    basePath: GLOBALS.BUILD_DIR
+  })
+
   gulp.watch(DESTINATIONS.livereload).on 'change', (file) ->
-    livereloadServer.changed(file.path)
+    livereload.changed(file.path)
