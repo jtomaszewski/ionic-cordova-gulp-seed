@@ -155,12 +155,9 @@ module.exports = new class GulpConfig
           'app/js/bootstrap.coffee'
         ]
         app: [
-          'app/js/app_config.coffee' # define application's angular module; add some native/global js variables
-          'app/js/*/**/*.coffee'  # include all angular submodules (like controllers, directives, services)
-          'app/js/routes.coffee'  # app.config - routes
-        ]
-        app_run: [
-          'app/js/app_run.coffee' # app.config; app.run
+          'app/js/config/**/*.coffee' # initialize & configure the angular's app
+          'app/js/*/**/*.coffee'      # include all angular submodules (like controllers, directives, services)
+          'app/js/routes.coffee'      # app.config - set routes
         ]
         tests:
           e2e: [

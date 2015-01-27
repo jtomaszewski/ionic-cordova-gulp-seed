@@ -30,8 +30,8 @@ gulp.task 'scripts:vendor', ->
     .pipe(gulp.dest(DESTINATIONS.scripts))
 
 
-# Define scripts:app, scripts:app_run, scripts:bootstrap tasks
-['app', 'app_run', 'bootstrap'].forEach (scriptsName) ->
+# Define scripts:app, scripts:bootstrap tasks
+['app', 'bootstrap'].forEach (scriptsName) ->
   gulp.task "scripts:#{scriptsName}", ->
     gulp.src(PATHS.scripts[scriptsName])
       .pipe((plumber (error) ->
@@ -48,7 +48,7 @@ gulp.task 'scripts:vendor', ->
       .pipe(gulp.dest(DESTINATIONS.scripts))
 
 
-gulp.task 'scripts', ['scripts:vendor', 'scripts:app', 'scripts:app_run', 'scripts:bootstrap']
+gulp.task 'scripts', ['scripts:vendor', 'scripts:app', 'scripts:bootstrap']
 
 
 # Run this as a first task, to enable uploading sourcemaps to rollbar.

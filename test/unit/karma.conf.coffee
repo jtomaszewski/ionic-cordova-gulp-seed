@@ -11,13 +11,13 @@ module.exports = (config) ->
       "test/unit/tests-config.coffee"
 
       # "www/js/app.js"
-      # This is the copy from gulpfile.coffee - you need to keep it up to date.
+      # This is a concatenated list of all scripts from gulpfile.coffee
+      # (we need to keep it up to date with it).
       'app/js/bootstrap.coffee'
-      'app/js/app_config.coffee'
-      "www/js/app_templates.js"
+      'app/js/config/**/*.coffee'
       'app/js/*/**/*.coffee'
       'app/js/routes.coffee'
-      'app/js/app_run.coffee'
+      "www/js/app_templates.js"
 
       "test/unit/helpers/**/*.coffee"
       "test/unit/**/*.coffee"
