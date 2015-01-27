@@ -1,8 +1,7 @@
 gulp = require 'gulp'
 runSequence = require 'run-sequence'
 
-{GLOBALS, PUBLIC_GLOBALS} = require "../../globals"
-{PATHS, DESTINATIONS} = require "../../paths"
+{GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
 
 # Run set-debug as the first task, to enable debug version.

@@ -5,8 +5,7 @@ protractor = require 'gulp-protractor'
 Q = require 'q'
 childProcess = require 'child_process'
 
-{GLOBALS, PUBLIC_GLOBALS} = require "../../globals"
-{PATHS, DESTINATIONS} = require "../../paths"
+{GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
 phantomChild = null
 phantomDefer = null

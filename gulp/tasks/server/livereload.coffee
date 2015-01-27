@@ -1,8 +1,7 @@
 gulp = require 'gulp'
 livereload = require 'gulp-livereload'
 
-{GLOBALS, PUBLIC_GLOBALS} = require "../../globals"
-{PATHS, DESTINATIONS} = require "../../paths"
+{GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
 gulp.task 'livereload', ->
   livereloadServer = livereload()

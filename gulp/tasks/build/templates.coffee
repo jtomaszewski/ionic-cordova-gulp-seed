@@ -6,8 +6,7 @@ jade = require 'gulp-jade'
 templateCache = require 'gulp-angular-templatecache'
 path = require 'path'
 
-{GLOBALS, PUBLIC_GLOBALS} = require "../../globals"
-{PATHS, DESTINATIONS} = require "../../paths"
+{GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
 gulp.task 'templates', ->
   gulp.src(PATHS.templates)

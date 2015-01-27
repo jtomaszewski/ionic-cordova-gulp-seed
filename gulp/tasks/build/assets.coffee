@@ -4,8 +4,7 @@ plumber = require 'gulp-plumber'
 changed = require 'gulp-changed'
 ejs = require 'gulp-ejs'
 
-{GLOBALS, PUBLIC_GLOBALS} = require "../../globals"
-{PATHS, DESTINATIONS} = require "../../paths"
+{GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
 gulp.task 'assets:ejs', ->
   gulp.src(PATHS.assets_ejs)

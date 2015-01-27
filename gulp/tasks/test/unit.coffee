@@ -1,8 +1,7 @@
 gulp = require 'gulp'
 childProcess = require 'child_process'
 
-{GLOBALS, PUBLIC_GLOBALS} = require "../../globals"
-{PATHS, DESTINATIONS} = require "../../paths"
+{GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
 # Runs unit tests using karma.
 # You can run it simply using `gulp test:unit`.

@@ -1,8 +1,7 @@
 gulp = require 'gulp'
 shell = require 'gulp-shell'
 
-{GLOBALS, PUBLIC_GLOBALS} = require "../globals"
-{PATHS, DESTINATIONS} = require "../paths"
+{GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../config"
 
 
 # Deploy the release's binary to webserver.

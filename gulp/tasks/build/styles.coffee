@@ -6,8 +6,7 @@ notify = require 'gulp-notify'
 sass = require 'gulp-sass'
 sourcemaps = require 'gulp-sourcemaps'
 
-{GLOBALS, PUBLIC_GLOBALS} = require "../../globals"
-{PATHS, DESTINATIONS} = require "../../paths"
+{GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
 gulp.task 'styles', ->
   gulp.src(PATHS.styles)
