@@ -1,0 +1,9 @@
+/app
+/assets
+/keys
+/merges
+/test
+
+/.bowerrc
+/.envrc*
+/ionic.project

@@ -1,9 +1,11 @@
 {
   "name": "ionic-cordova-gulp-seed",
+  "version": "2.0.0",
   "description": "Ionic & Cordova & Gulp seed with organized code, tests, bower support and some other stuff. Originated from ionic-angular-cordova-seed.",
+  "keywords": ["seed", "ionic", "gulp", "cordova"],
   "author": "jacek@jtom.me",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "chai": "^1.9.1",
     "coffee-script": "^1.7.1",
     "cordova": "^4.2.0",

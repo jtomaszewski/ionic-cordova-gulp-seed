@@ -1,8 +1,10 @@
-platforms/^.*
-node_modules
-assets/components
-www
-dist
+/platforms/^.*
 /keys
-.envrc
-npm-debug.log
+
+/node_modules
+/assets/components
+
+/www
+
+/.envrc
+/npm-debug.log
