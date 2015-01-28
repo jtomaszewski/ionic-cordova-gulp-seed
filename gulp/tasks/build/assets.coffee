@@ -16,7 +16,7 @@ gulp.task 'assets:ejs', ->
     .pipe(gulp.dest(DESTINATIONS.assets))
 
 gulp.task 'assets:others', ->
-  gulp.src(PATHS.assets)
+  gulp.src(PATHS.assets, base: "assets")
     .pipe(changed(DESTINATIONS.assets))
     .pipe(gulp.dest(DESTINATIONS.assets))
 
