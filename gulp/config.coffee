@@ -127,6 +127,18 @@ module.exports = new class GulpConfig
       "WEINRE_ADDRESS"
     ]
 
+    # _SHELL_GLOBALS_KEYS defines which @GLOBALS
+    #   will be passed to some of the shell tasks (f.e. those in tasks/cordova.coffee).
+    #
+    # The filtered globals will be available under GulpConfig.SHELL_GLOBALS.
+    @_SHELL_GLOBALS_KEYS = [
+      "ANDROID_CROSSWALK_MODE"
+      "BUNDLE_ID"
+      "BUNDLE_NAME"
+      "BUNDLE_VERSION"
+      "IOS_PROVISIONING_PROFILE"
+    ]
+
     @_regenerateGlobals()
 
     @PATHS = {
@@ -187,6 +199,12 @@ module.exports = new class GulpConfig
       @PUBLIC_GLOBALS[key] = @GLOBALS[key] if @GLOBALS[key]?
 
 
+  filterShellGlobals: (@_SHELL_GLOBALS_KEYS) ->
+    @SHELL_GLOBALS = {}
+    for key in @_SHELL_GLOBALS_KEYS
+      @SHELL_GLOBALS[key] = @GLOBALS[key] if @GLOBALS[key]?
+
+
   _regenerateGlobals: ->
     @GLOBALS = require('extend') true, {}, @_GLOBALS_DEFAULTS.defaults, (@_GLOBALS_DEFAULTS[gutil.env.env || "development"] || {})
 
@@ -204,3 +222,4 @@ module.exports = new class GulpConfig
       @GLOBALS[k] = @GLOBALS[k](@GLOBALS) if typeof @GLOBALS[k] == "function"
 
     @filterPublicGlobals(@_PUBLIC_GLOBALS_KEYS)
+    @filterShellGlobals(@_SHELL_GLOBALS_KEYS)
