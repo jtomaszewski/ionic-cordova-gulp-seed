@@ -12,7 +12,6 @@ require "./tasks/test/e2e"
 require "./tasks/test/unit"
 
 require "./tasks/server/watch"
-require "./tasks/server/livereload"
 require "./tasks/server/serve"
 require "./tasks/server/weinre"
 

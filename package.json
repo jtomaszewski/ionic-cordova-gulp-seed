@@ -15,6 +15,7 @@
   "author": "jacek@jtom.me",
   "license": "MIT",
   "peerDependencies": {
+    "browser-sync": "~2.0.0-rc3",
     "chai": "^1.9.1",
     "coffee-script": "^1.7.1",
     "cordova": "^4.2.0",
@@ -56,6 +57,6 @@
     "protractor-coffee-preprocessor": "0.0.1",
     "q": "^1.0.0",
     "run-sequence": "~0.3.6",
-    "weinre": "^2.0.0-pre-HH0SN197"
+    "weinre": "^2.0.0-pre-I0Z7U9OV"
   }
 }
