@@ -8,7 +8,7 @@ gulp.task 'serve', ->
   browserSync({
     server:
       baseDir: GLOBALS.BUILD_DIR
-      port: GLOBALS.HTTP_SERVER_PORT
+    port: GLOBALS.HTTP_SERVER_PORT
     open: !!+GLOBALS.OPEN_IN_BROWSER
     files: DESTINATIONS.livereload
   })
