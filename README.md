@@ -99,14 +99,6 @@ First, generate the certificate keys:
 1. [Generate .keystore file](http://developer.android.com/tools/publishing/app-signing.html):
 `keytool -genkey -v -keystore keys/android/$ANDROID_KEYSTORE_NAME.keystore -alias $ANDROID_ALIAS_NAME -keyalg RSA -keysize 2048 -validity 10000`
 
-2. Add proper key hash to [Facebook application](https://developers.facebook.com/x/apps/) in android's settings.
-
-  You can generate Key Hash using [this method](https://developers.facebook.com/docs/android/getting-started/):
-  `keytool -exportcert -alias $ANDROID_ALIAS_NAME -keystore keys/android/$ANDROID_KEYSTORE_NAME.keystore | openssl sha1 -binary | openssl base64`
-
-  To generate debug's Key Hash (using in `cordova run`), use:
-  `keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore -storepass android | openssl sha1 -binary | openssl base64`
-
 #### iPhone
 
 1. Create a certificate and a provisioning profile, as it's described [here](http://docs.build.phonegap.com/en_US/3.3.0/signing_signing-ios.md.html#iOS%20Signing).
@@ -116,6 +108,5 @@ First, generate the certificate keys:
 Then, generate the application and deploy it to the webserver with:
 
 ```
-gulp release --env=[staging|production] --platform [ios|android]
+gulp release:[ios|android] --env=[staging|production]
 ```
-
