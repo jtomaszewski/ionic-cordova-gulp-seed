@@ -3,7 +3,7 @@
 # Compile image resources (images and splashscreens) from assets/img/ to assets/img/res/ dasrectory.
 
 if test ! -d "hooks"; then
-  echo "You must run it in main directory of cordova project."
+  echo "HOOK-generate_res_assets >> You must run it in main directory of cordova project."
   exit 1
 fi
 
@@ -11,7 +11,7 @@ LOGO="assets/img/logo-square.png"
 PORTRAIT_SPLASH="assets/img/splash-portrait.png"
 LANDSCAPE_SPLASH="assets/img/splash-landscape.png"
 
-if test -d "platforms/android"; then
+if [[ $CORDOVA_PLATFORMS == *"android"* ]]; then
   convert $LOGO -resize "96x96" "platforms/android/res/drawable/icon.png"
   convert $LOGO -resize "36x36" "platforms/android/res/drawable-ldpi/icon.png"
   convert $LOGO -resize "48x48" "platforms/android/res/drawable-mdpi/icon.png"
@@ -67,7 +67,7 @@ if test -d "platforms/android"; then
   cp platforms/android/res/drawable-xhdpi/screen_landscape.png platforms/android/res/drawable-land-xhdpi/screen_landscape.png
   cp platforms/android/res/drawable-xhdpi/screen_landscape.png platforms/android/res/drawable-land-xhdpi/screen.png
 
-  echo "Android res images have been generated."
+  echo "HOOK-generate_res_assets >> Android res images have been generated."
 fi
 
 if test -d "platforms/ios"; then
@@ -111,6 +111,6 @@ if test -d "platforms/ios"; then
     -gravity center -crop 320x480+0+0 +repage\
     "$BUNDLE_PATH/Resources/splash/Default~iphone.png"
 
-  echo "iOS res images have been generated."
+  echo "HOOK-generate_res_assets >> iOS res images have been generated."
 fi
 

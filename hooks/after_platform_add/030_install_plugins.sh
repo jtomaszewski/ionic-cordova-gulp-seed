@@ -11,9 +11,10 @@ function install_plugin {
   ARGS=$3
 
   for PLATFORM in $PLATFORMS; do
-    test -d platforms/$PLATFORM || continue
+    # Is this the platform currently issued by cordova's command?
+    [[ $CORDOVA_PLATFORMS == *"$PLATFORM"* ]] || continue
 
-    node_modules/.bin/plugman install --plugins_dir plugins --project platforms/$PLATFORM --platform $PLATFORM --plugin $NAME $ARGS || (echo "Installation of plugin $NAME on $PLATFORM has failed." && exit 1)
+    plugman install --plugins_dir plugins --project platforms/$PLATFORM --platform $PLATFORM --plugin $NAME $ARGS || (echo "HOOK-install_plugins >> Installation of plugin $NAME on $PLATFORM has failed." && exit 1)
   done
 }
 
@@ -35,4 +36,4 @@ install_plugin "android ios" vendor/plugins/ionic-plugins-keyboard || exit $?
 # install_plugin "android ios" vendor/plugins/GAPlugin || exit $?
 
 
-echo "Plugins have been installed."
+echo "HOOK-install_plugins >> Plugins have been installed."

@@ -5,7 +5,7 @@
 # for more information)
 
 # Exit, if there's no android here.
-test ! -d "platforms/android" && exit
+[[ $CORDOVA_PLATFORMS == *"android"* ]] || exit 0
 
 # Set to 1 to enable crosswalk mode.
 test ! "$ANDROID_CROSSWALK_MODE" -eq "1" && exit
@@ -18,7 +18,7 @@ rm -rf platforms/android/CordovaLib/*
 cp -a $CROSSWALK_BUNDLE_PATH/framework/* platforms/android/CordovaLib/
 cp -a $CROSSWALK_BUNDLE_PATH/VERSION platforms/android/
 
-echo "HOOK-CROSSWALK >> crosswalk-cordova/framework has been copied to android's project path."
+echo "HOOK-migrate_android_to_crosswalk >> crosswalk-cordova/framework has been copied to android's project path."
 
 
 # Crosswalk requires a couple of extra permissions,
@@ -31,18 +31,18 @@ function insert_line_to_manifest {
 
   if ! fgrep --silent "$LINE" $ANDROID_MANIFEST_PATH; then
     awk "/<\/manifest>/{print \"$LINE\"}1" $ANDROID_MANIFEST_PATH > tmp && mv tmp $ANDROID_MANIFEST_PATH
-    echo "HOOK-CROSSWALK >> Line inserted to AndroidManifest.xml:"
-    echo "HOOK-CROSSWALK >> $LINE"
+    echo "HOOK-migrate_android_to_crosswalk >> Line inserted to AndroidManifest.xml:"
+    echo "HOOK-migrate_android_to_crosswalk >> $LINE"
   fi
 }
 
 insert_line_to_manifest "    <uses-permission android:name='android.permission.ACCESS_NETWORK_STATE' />"
 insert_line_to_manifest "    <uses-permission android:name='android.permission.ACCESS_WIFI_STATE' />"
-echo "HOOK-CROSSWALK >> AndroidManifest.xml should now contain required permissions: ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE."
+echo "HOOK-migrate_android_to_crosswalk >> AndroidManifest.xml should now contain required permissions: ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE."
 
 
 cd platforms/android/CordovaLib
-echo "HOOK-CROSSWALK >> Building the crosswalk's CordovaLib..."
+echo "HOOK-migrate_android_to_crosswalk >> Building the crosswalk's CordovaLib..."
 
 # This updates the CordovaLib project and the
 # xwalk_core_library subproject and target Android 4.4.2 (API
@@ -52,6 +52,6 @@ android update project --subprojects --path . --target "android-19"
 # build both the CordovaLib and xwalk_core_library projects
 ant debug
 
-echo "HOOK-CROSSWALK >> Crosswalk has been sucessfully built."
+echo "HOOK-migrate_android_to_crosswalk >> Crosswalk has been sucessfully built."
 
 # TODO add support for both architectures (arm and x86)
