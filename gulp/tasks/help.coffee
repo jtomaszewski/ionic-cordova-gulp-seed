@@ -21,4 +21,3 @@ gulp = require('gulp-help')(require('gulp'), {
   """
   options: opt
 })
-runSequence = require 'run-sequence'
