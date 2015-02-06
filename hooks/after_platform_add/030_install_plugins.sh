@@ -13,7 +13,7 @@ function install_plugin {
   for PLATFORM in $PLATFORMS; do
     test -d platforms/$PLATFORM || continue
 
-    plugman install --plugins_dir plugins --project platforms/$PLATFORM --platform $PLATFORM --plugin $NAME $ARGS || (echo "Installation of plugin $NAME on $PLATFORM has failed." && exit 1)
+    node_modules/.bin/plugman install --plugins_dir plugins --project platforms/$PLATFORM --platform $PLATFORM --plugin $NAME $ARGS || (echo "Installation of plugin $NAME on $PLATFORM has failed." && exit 1)
   done
 }
 

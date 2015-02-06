@@ -53,6 +53,7 @@
     "karma-ubuntu-reporter": "0.0.3",
     "mocha": "^1.18.2",
     "open": "0.0.4",
+    "plugman": "~0.22.16",
     "protractor": "^1.6.1",
     "protractor-coffee-preprocessor": "0.0.1",
     "q": "^1.0.0",
