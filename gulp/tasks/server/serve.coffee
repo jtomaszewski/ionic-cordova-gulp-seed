@@ -1,10 +1,10 @@
-gulp = require 'gulp'
+gulp = require('gulp-help')(require('gulp'))
 gutil = require 'gulp-util'
 browserSync = require 'browser-sync'
 
 {GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
-gulp.task 'serve', ->
+gulp.task 'serve', "Run browser-sync server with livereload in ./#{GLOBALS.BUILD_DIR}/ directory", ->
   browserSync({
     server:
       baseDir: GLOBALS.BUILD_DIR

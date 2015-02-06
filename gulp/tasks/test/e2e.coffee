@@ -1,4 +1,4 @@
-gulp = require 'gulp'
+gulp = require('gulp-help')(require('gulp'))
 gutil = require 'gulp-util'
 notify = require 'gulp-notify'
 protractor = require 'gulp-protractor'
@@ -12,7 +12,7 @@ phantomDefer = null
 
 # standalone test server which runs in the background.
 # doesnt work atm - instead, run `webdriver-manager start`
-gulp.task 'test:e2e:server', (cb) ->
+gulp.task 'test:e2e:server', "Run e2e server", (cb) ->
   return cb() if phantomDefer
   phantomDefer = Q.defer()
 
@@ -37,7 +37,7 @@ gulp.task 'test:e2e:server', (cb) ->
 # You can run it like this:
 # `gulp test:e2e` - runs all e2e tests
 # `gulp test:e2e --debug --specs test/e2e/intro_test.coffee` - runs only one test, in debug mode
-gulp.task 'test:e2e', ->
+gulp.task 'test:e2e', "Run e2e tests (e2e server must be running)", ->
   args = ['--baseUrl', "http://localhost:#{GLOBALS.HTTP_SERVER_PORT}"]
   args.push 'debug' if gulp.env.debug
 
@@ -50,3 +50,8 @@ gulp.task 'test:e2e', ->
       args: args
     }))
     .on('error', (notify.onError((error) -> error.message)))
+, {
+  options:
+    "debug=0": "(passed directly to Protractor)"
+    "specs=path_to_e2e_test.coffee": "(passed directly to Protractor)"
+}

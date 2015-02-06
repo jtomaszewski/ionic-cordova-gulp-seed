@@ -1,4 +1,4 @@
-gulp = require 'gulp'
+gulp = require('gulp-help')(require('gulp'))
 runSequence = require 'run-sequence'
 
 {GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
@@ -6,16 +6,16 @@ runSequence = require 'run-sequence'
 
 # Run set-debug as the first task, to enable debug version.
 # Example: `gulp set-debug cordova:run:android`
-gulp.task "set-debug", ->
+gulp.task "set-debug", false, ->
   if GLOBALS.BUNDLE_ID.indexOf(".debug") == -1
     GLOBALS.BUNDLE_ID += ".debug"
     GLOBALS.BUNDLE_NAME += "Dbg"
 
 
-gulp.task "build-debug", ["set-debug", "build"]
+gulp.task "build-debug", false, ["set-debug", "build"]
 
 
-gulp.task "build", (cb) ->
+gulp.task "build", "Compile all the contents of ./#{GLOBALS.BUILD_DIR}/", (cb) ->
   runSequence ["clean", "bower:install"],
     [
       "assets"

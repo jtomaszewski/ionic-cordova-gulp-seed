@@ -1,4 +1,4 @@
-gulp = require 'gulp'
+gulp = require('gulp-help')(require('gulp'))
 gutil = require 'gulp-util'
 plumber = require 'gulp-plumber'
 notify = require 'gulp-notify'
@@ -6,7 +6,7 @@ jade = require 'gulp-jade'
 
 {GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
-gulp.task 'views', ->
+gulp.task 'views', "Compile ./app/*.jade views to ./#{GLOBALS.BUILD_DIR}/*.html", ->
   gulp.src(PATHS.views)
     .pipe((plumber (error) ->
       gutil.log gutil.colors.red(error.message)

@@ -1,4 +1,4 @@
-gulp = require 'gulp'
+gulp = require('gulp-help')(require('gulp'))
 gutil = require 'gulp-util'
 plumber = require 'gulp-plumber'
 changed = require 'gulp-changed'
@@ -8,7 +8,7 @@ sourcemaps = require 'gulp-sourcemaps'
 
 {GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
-gulp.task 'styles', ->
+gulp.task 'styles', "Compile ./app/css/*.sass stylesheets to ./#{GLOBALS.BUILD_DIR}/css/*.css", ->
   gulp.src(PATHS.styles)
     .pipe(changed(DESTINATIONS.styles, extension: '.css'))
     .pipe((plumber (error) ->

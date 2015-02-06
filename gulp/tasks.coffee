@@ -21,3 +21,4 @@ require "./tasks/deploy"
 require "./tasks/release"
 
 require "./tasks/default"
+require "./tasks/help"

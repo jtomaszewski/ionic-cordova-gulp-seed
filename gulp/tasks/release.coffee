@@ -1,4 +1,4 @@
-gulp = require 'gulp'
+gulp = require('gulp-help')(require('gulp'))
 runSequence = require 'run-sequence'
 
 {GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../config"
@@ -6,9 +6,15 @@ runSequence = require 'run-sequence'
 
 GLOBALS.AVAILABLE_PLATFORMS.forEach (platform) ->
   # Build the release and deploys it to the HTTP server.
-  gulp.task "release:#{platform}", (cb) ->
-    runSequence "cordova:build-release:#{platform}", "cordova:sign-release:#{platform}", "deploy:release:#{platform}", cb
+  if gulp.tasks["deploy:release:#{platform}"]
+    gulp.task "release:#{platform}", "Release the #{platform} app", (cb) ->
+      runSequence "cordova:build-release:#{platform}", "cordova:sign-release:#{platform}", "deploy:release:#{platform}", cb
 
 
-gulp.task "release", ->
-  runSequence "deploy:rollbar-sourcemaps", "release:android", "release:ios"
+releaseTasks = ["deploy:rollbar-sourcemaps", "release:android", "release:ios"]
+  .filter (taskName) -> !!gulp.tasks[taskName]
+
+if releaseTasks.length > 0
+  gulp.task "release", "Release the app - deploy it to both Android & iOS", ->
+    runSequence.apply(runSequence, releaseTasks)
+

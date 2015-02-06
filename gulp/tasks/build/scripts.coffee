@@ -1,4 +1,4 @@
-gulp = require 'gulp'
+gulp = require('gulp-help')(require('gulp'))
 gutil = require 'gulp-util'
 plumber = require 'gulp-plumber'
 coffee = require 'gulp-coffee'
@@ -11,15 +11,15 @@ gulpIf = require 'gulp-if'
 
 
 uploadSourcemapsToRollbar = ->
-  isEnabled = !!(GLOBALS.UPLOAD_SOURCEMAPS_TO_ROLLBAR && GLOBALS.ROLLBAR_SERVER_ACCESS_TOKEN)
-  gulpIf(isEnabled, rollbar({
+  shouldUploadRollbarSourcemaps = !!GLOBALS.UPLOAD_SOURCEMAPS_TO_ROLLBAR && !!GLOBALS.ROLLBAR_SERVER_ACCESS_TOKEN
+  gulpIf(shouldUploadRollbarSourcemaps, rollbar({
     accessToken: (GLOBALS.ROLLBAR_SERVER_ACCESS_TOKEN ? "none")
     version: GLOBALS.CODE_VERSION
     sourceMappingURLPrefix: GLOBALS.ROLLBAR_SOURCEMAPS_URL_PREFIX + "/js"
   }))
 
 
-gulp.task 'scripts:vendor', ->
+gulp.task 'scripts:vendor', "Compile vendor js scripts to the ./#{GLOBALS.BUILD_DIR}/js/vendor.js file", ->
   gulp.src(PATHS.scripts.vendor)
 
     .pipe(sourcemaps.init())
@@ -30,7 +30,7 @@ gulp.task 'scripts:vendor', ->
     .pipe(gulp.dest(DESTINATIONS.scripts))
 
 
-gulp.task "scripts:app", ->
+gulp.task "scripts:app", "Compile ./app/js/*.js scripts to the ./#{GLOBALS.BUILD_DIR}/js/app.js file", ->
   gulp.src(PATHS.scripts.app)
     .pipe((plumber (error) ->
       gutil.log gutil.colors.red(error.message)
@@ -46,12 +46,13 @@ gulp.task "scripts:app", ->
     .pipe(gulp.dest(DESTINATIONS.scripts))
 
 
-gulp.task 'scripts', ['scripts:vendor', 'scripts:app']
+gulp.task 'scripts', "Compile ./#{GLOBALS.BUILD_DIR}/js/*.js scripts", ['scripts:vendor', 'scripts:app']
 
 
-# Run this as a first task, to enable uploading sourcemaps to rollbar.
-# By default it's being run in the "release" task.
-gulp.task "deploy:rollbar-sourcemaps:enable", ->
-  GLOBALS.UPLOAD_SOURCEMAPS_TO_ROLLBAR = true
+if !!GLOBALS.ROLLBAR_SERVER_ACCESS_TOKEN
+  # Run this as a first task, to enable uploading sourcemaps to rollbar.
+  # By default it's being run in the "release" task.
+  gulp.task "deploy:rollbar-sourcemaps:enable", "Turn on uploading of scripts' sourcemaps to Rollbar (during the scripts:* tasks)", ->
+    GLOBALS.UPLOAD_SOURCEMAPS_TO_ROLLBAR = true
 
-gulp.task "deploy:rollbar-sourcemaps", ["deploy:rollbar-sourcemaps:enable", "scripts"]
+  gulp.task "deploy:rollbar-sourcemaps", "Upload scripts' sourcemaps to Rollbar", ["deploy:rollbar-sourcemaps:enable", "scripts"]
