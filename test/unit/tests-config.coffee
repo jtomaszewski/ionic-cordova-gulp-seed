@@ -3,9 +3,10 @@
 #   ignoreLeaks: true
 
 window.GLOBALS =
+  ANGULAR_APP_NAME: "ionicstarter"
   ENV: 'test'
 
-beforeEach module('ionicstarter')
+beforeEach module(GLOBALS.ANGULAR_APP_NAME)
 
 afterEach ->
   inject ($httpBackend) ->

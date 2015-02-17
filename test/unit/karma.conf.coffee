@@ -43,7 +43,7 @@ module.exports = (config) ->
 
     coffeePreprocessor:
       options:
-        bare: true
+        bare: false
         sourceMap: true
 
       # transformPath: (path) ->
