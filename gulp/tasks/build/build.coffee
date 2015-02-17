@@ -24,3 +24,7 @@ gulp.task "build", "Compile all the contents of ./#{GLOBALS.BUILD_DIR}/", (cb) -
       "templates"
       "views"
     ], cb
+
+
+gulp.task "build-release", false, (cb) ->
+  runSequence "build", "build:minify", cb

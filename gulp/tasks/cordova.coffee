@@ -39,13 +39,13 @@ GLOBALS.AVAILABLE_PLATFORMS.forEach (platform) ->
   # Same as cordova:run, but use release version, not debug.
   gulp.task "cordova:run-release:#{platform}",
     "Runs the app release version on #{platform} (runs `cordova run #{platform} --device --release`)",
-    ["cordova:platform-add:#{platform}", "build"],
+    ["cordova:platform-add:#{platform}", "build-release"],
     shell.task(generateEnvCommand() + "node_modules/.bin/cordova run #{platform} --device --release")
 
   # Build a release.
   gulp.task "cordova:build-release:#{platform}",
     "Builds the app release version for #{platform} (runs `cordova build #{platform} --release`)",
-    ["cordova:platform-add:#{platform}", "build"],
+    ["cordova:platform-add:#{platform}", "build-release"],
     shell.task(generateEnvCommand() + "node_modules/.bin/cordova build #{platform} --release" + ((" --device" if platform == "ios") || ""))
 
   # Sign the release.

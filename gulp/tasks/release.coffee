@@ -15,6 +15,6 @@ releaseTasks = ["deploy:rollbar-sourcemaps", "release:android", "release:ios"]
   .filter (taskName) -> !!gulp.tasks[taskName]
 
 if releaseTasks.length > 0
-  gulp.task "release", "Release the app - deploy it to both Android & iOS", ->
+  gulp.task "release", "Release the app - deploy it to both Android & iOS", ["build-release"], ->
     runSequence.apply(runSequence, releaseTasks)
 

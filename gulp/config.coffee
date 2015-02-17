@@ -190,6 +190,9 @@ module.exports = new class GulpConfig
         "#{@GLOBALS.BUILD_DIR}/**/*"
         "!#{@GLOBALS.BUILD_DIR}/config.xml"
       ]
+      unnecessary_assets: [
+        "#{@GLOBALS.BUILD_DIR}/**/*.map"
+      ]
     }
 
 
