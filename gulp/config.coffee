@@ -28,6 +28,9 @@ module.exports = new class GulpConfig
         # By default, we compile all html/css/js files into www/ directory.
         BUILD_DIR: "www"
 
+        # Should we compress assets (.css and .js files, soon also images)?
+        COMPRESS_ASSETS: false
+
         # Marks the current code version. Used in uploading sourcemaps to Rollbar.
         # By default: sha-code of the recent git commit.
         CODE_VERSION: execSync.exec("git rev-parse HEAD").stdout.trim()
@@ -84,6 +87,8 @@ module.exports = new class GulpConfig
 
         BUNDLE_ID: "com.jtomaszewski.ionicstarter.production"
         BUNDLE_NAME: "IonicStarter"
+
+        COMPRESS_ASSETS: true
 
         # If those 2 variables are defined, the app will be deployed to the remote server after compiling the release.
         ANDROID_DEPLOY_APPBIN_PATH: "deploy@ionicstarter.com:/u/apps/ionicstarter/shared/public/uploads/ionicstarter-production.apk"

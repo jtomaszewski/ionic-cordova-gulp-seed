@@ -6,12 +6,13 @@ concat = require 'gulp-concat'
 sourcemaps = require 'gulp-sourcemaps'
 rollbar = require 'gulp-rollbar'
 gulpIf = require 'gulp-if'
+uglify = require 'gulp-uglify'
 
 {GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
 
 uploadSourcemapsToRollbar = ->
-  shouldUploadRollbarSourcemaps = !!GLOBALS.UPLOAD_SOURCEMAPS_TO_ROLLBAR && !!GLOBALS.ROLLBAR_SERVER_ACCESS_TOKEN
+  shouldUploadRollbarSourcemaps = !!+GLOBALS.UPLOAD_SOURCEMAPS_TO_ROLLBAR && !!GLOBALS.ROLLBAR_SERVER_ACCESS_TOKEN
   gulpIf(shouldUploadRollbarSourcemaps, rollbar({
     accessToken: (GLOBALS.ROLLBAR_SERVER_ACCESS_TOKEN ? "none")
     version: GLOBALS.CODE_VERSION
@@ -24,6 +25,7 @@ gulp.task 'scripts:vendor', "Compile vendor js scripts to the ./#{GLOBALS.BUILD_
 
     .pipe(sourcemaps.init())
       .pipe(concat('vendor.js'))
+      .pipe(gulpIf(!!+GLOBALS.COMPRESS_ASSETS, uglify(mangle: false)))
       .pipe(uploadSourcemapsToRollbar())
     .pipe(sourcemaps.write('./'))
 
@@ -40,6 +42,7 @@ gulp.task "scripts:app", "Compile ./app/js/*.js scripts to the ./#{GLOBALS.BUILD
     .pipe(sourcemaps.init())
       .pipe(coffee())
       .pipe(concat("app.js"))
+      .pipe(gulpIf(!!+GLOBALS.COMPRESS_ASSETS, uglify(mangle: false)))
       .pipe(uploadSourcemapsToRollbar())
     .pipe(sourcemaps.write('./'))
 

@@ -5,6 +5,8 @@ changed = require 'gulp-changed'
 notify = require 'gulp-notify'
 sass = require 'gulp-sass'
 sourcemaps = require 'gulp-sourcemaps'
+gulpIf = require 'gulp-if'
+minifyCSS = require 'gulp-minify-css'
 
 {GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
@@ -18,6 +20,7 @@ gulp.task 'styles', "Compile ./app/css/*.sass stylesheets to ./#{GLOBALS.BUILD_D
 
     .pipe(sourcemaps.init())
       .pipe(sass())
+      .pipe(gulpIf(!!+GLOBALS.COMPRESS_ASSETS, minifyCSS(processImport: false)))
     .pipe(sourcemaps.write())
 
     .on('error', notify.onError((error) -> error.message))
