@@ -27,16 +27,14 @@ module.exports = (config) ->
     ]
 
     # use dots reporter, as travis terminal does not support escaping sequences
-    # possible values: 'dots', 'progress'
+    # possible values: 'dots', 'progress', 'osx', 'ubuntu'
     # CLI --reporters progress
-    # reporters: ['progress']
+    reporters: ['osx', 'dots']
 
     autoWatch: true
 
     # f.e. Chrome, PhantomJS
     browsers: ['PhantomJS']
-
-    reporters: ['osx', 'progress']
 
     preprocessors:
       '**/*.coffee': ['coffee']
