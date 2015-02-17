@@ -1,10 +1,10 @@
-angular.module 'ionicstarter'
+angular.module("ionicstarter")
 
 .factory 'FormFactory', ($q) ->
 
   ###
   Basic form class that you can extend in your actual forms.
-  
+
   Object attributes:
   - loading[Boolean] - is the request waiting for response?
   - message[String] - after response, success message

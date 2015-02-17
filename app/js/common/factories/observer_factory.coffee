@@ -1,4 +1,4 @@
-angular.module 'ionicstarter'
+angular.module("ionicstarter")
 
 .factory 'ObserverFactory', ($rootScope) ->
   class ObserverFactory

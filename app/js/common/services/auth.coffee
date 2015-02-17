@@ -1,4 +1,4 @@
-angular.module "ionicstarter"
+angular.module("ionicstarter")
 
 .service 'Auth', ($http, PromiseFactory) ->
   USER_EMAIL_CACHE_KEY = "user_email"
@@ -20,15 +20,15 @@ angular.module "ionicstarter"
         localStorage.removeItem(USER_EMAIL_CACHE_KEY)
         localStorage.removeItem(USER_TOKEN_CACHE_KEY)
       @refreshUser(user)
-    
+
     refreshUser: (user = null) ->
       @user = if user
         user.$promise = PromiseFactory(user)
         user.$resolved = true
         user
-      else if @email && @token 
-        # AccountResource.getProfile({email: @email}) 
-      else 
+      else if @email && @token
+        # AccountResource.getProfile({email: @email})
+      else
         null
 
     isSignedIn: ->
