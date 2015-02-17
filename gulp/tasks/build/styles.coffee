@@ -21,7 +21,7 @@ gulp.task 'styles', "Compile ./app/css/*.sass stylesheets to ./#{GLOBALS.BUILD_D
     .pipe(sourcemaps.init())
       .pipe(sass())
       .pipe(gulpIf(!!+GLOBALS.COMPRESS_ASSETS, minifyCSS(processImport: false)))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('./'))
 
     .on('error', notify.onError((error) -> error.message))
     .pipe(gulp.dest(DESTINATIONS.styles))
