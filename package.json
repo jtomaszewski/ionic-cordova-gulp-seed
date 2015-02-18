@@ -1,6 +1,6 @@
 {
   "name": "ionic-cordova-gulp-seed",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "description": "Ionic & Cordova & Gulp seed with organized code, tests, bower support and some other stuff. Originated from ionic-angular-cordova-seed.",
   "repository": {
     "type": "git",
