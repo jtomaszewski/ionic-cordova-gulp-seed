@@ -197,6 +197,7 @@ module.exports = new class GulpConfig
       views: "#{@GLOBALS.BUILD_DIR}"
       livereload: [
         "#{@GLOBALS.BUILD_DIR}/**/*"
+        "!#{@GLOBALS.BUILD_DIR}/**/*.map"
         "!#{@GLOBALS.BUILD_DIR}/config.xml"
       ]
       unnecessary_assets: [
