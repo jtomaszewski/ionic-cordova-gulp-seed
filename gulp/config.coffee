@@ -2,6 +2,7 @@ gulp = require("gulp")
 gutil = require("gulp-util")
 extend = require("extend")
 execSync = require("execSync")
+os = require("os")
 
 module.exports = new class GulpConfig
   constructor: ->
@@ -26,7 +27,15 @@ module.exports = new class GulpConfig
         APP_ROOT: execSync.exec("pwd").stdout.trim() + "/"
 
         # By default, we compile all html/css/js files into www/ directory.
-        BUILD_DIR: "www"
+        BUILD_DIR: (GLOBALS) ->
+          if !!+GLOBALS.TMP_BUILD_DIR
+            "#{os.tmpdir()}/ionic#{GLOBALS.DEPLOY_TIME}/"
+          else
+            "www"
+
+        # However, you can set this flag to true, and we'll change it to a random directory.
+        # Could be useful f.e. in unit/e2e tests
+        TMP_BUILD_DIR: false
 
         # Should we compress assets (.css and .js files, soon also images)?
         COMPRESS_ASSETS: false
@@ -226,7 +235,7 @@ module.exports = new class GulpConfig
       @GLOBALS[k] = gulp.env[k] if gulp.env[k]? && @GLOBALS[k]?
 
     for k, v of @GLOBALS
-      # Also, if a @GLOBALS[k] is a function, then let's call it and get its' value.
+      # Last but not least, if a @GLOBALS[k] is a function, then let's call it and get its' value.
       @GLOBALS[k] = @GLOBALS[k](@GLOBALS) if typeof @GLOBALS[k] == "function"
 
     @filterPublicGlobals(@_PUBLIC_GLOBALS_KEYS)

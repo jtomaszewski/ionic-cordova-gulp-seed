@@ -4,7 +4,7 @@ runSequence = require 'run-sequence'
 {GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
 
-# Run set-debug as the first task, to enable debug version.
+# Run 'set-debug' as the first task, to enable debug version.
 # Example: `gulp set-debug cordova:run:android`
 gulp.task "set-debug", false, ->
   if GLOBALS.BUNDLE_ID.indexOf(".debug") == -1

@@ -9,7 +9,6 @@ gulp.task 'watch', "Watch contents of app, assets, vendor files and recompile th
     gulp.watch(PATHS.watched_assets, ['assets'])
   gulp.watch(PATHS.assets_ejs, ['assets:ejs'])
   gulp.watch(PATHS.scripts.app, ['scripts:app'])
-  gulp.watch(PATHS.scripts.bootstrap, ['scripts:bootstrap'])
   gulp.watch(PATHS.scripts.vendor, ['scripts:vendor'])
   gulp.watch(PATHS.styles, ['styles'])
   gulp.watch(PATHS.templates, ['templates'])
