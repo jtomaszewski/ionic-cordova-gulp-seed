@@ -33,7 +33,7 @@ module.exports = new class GulpConfig
           else
             "www"
 
-        # However, you can set this flag to true, and we'll change it to a random directory.
+        # However, you can set this flag to true, and we'll change BUILD_DIR to a random directory.
         # Could be useful f.e. in unit/e2e tests
         TMP_BUILD_DIR: false
 
@@ -48,12 +48,13 @@ module.exports = new class GulpConfig
         DEPLOY_TIME: Date.now()
 
         # Used in server/weinre tasks as an actual IP for the server.
-        HTTP_SERVER_IP: (GLOBALS) ->
+        HTTP_SERVER_IP: (->
           # Try to detect IP address in user's network.
           # If not, fallback to 127.0.0.1 .
           localIp = execSync.exec("(ifconfig wlan 2>/dev/null || ifconfig en0) | grep inet | grep -v inet6 | awk '{print $2}' | sed 's/addr://g'").stdout.trim()
           localIp = "127.0.0.1" unless parseInt(localIp) > 0
           localIp
+        )()
 
         # By default, application runs on :4400 port.
         HTTP_SERVER_PORT: 4400
@@ -226,7 +227,7 @@ module.exports = new class GulpConfig
   _regenerateGlobals: ->
     @GLOBALS = require('extend') true, {}, @_GLOBALS_DEFAULTS.defaults, (@_GLOBALS_DEFAULTS[gutil.env.env || "development"] || {})
 
-    for k, v of @GLOBALS
+    Object.keys(@GLOBALS).forEach (k) =>
       # You can replace any of @GLOBALS by defining ENV variable in your command line,
       # f.e. `BUNDLE_ID="com.different.bundleid" gulp`
       @GLOBALS[k] = process.env[k] if process.env[k]? && @GLOBALS[k]?
@@ -235,9 +236,13 @@ module.exports = new class GulpConfig
       # `gulp --BUNDLE_ID="com.different.bundleid"`
       @GLOBALS[k] = gulp.env[k] if gulp.env[k]? && @GLOBALS[k]?
 
-    for k, v of @GLOBALS
-      # Last but not least, if a @GLOBALS[k] is a function, then let's call it and get its' value.
-      @GLOBALS[k] = @GLOBALS[k](@GLOBALS) if typeof @GLOBALS[k] == "function"
+      # Last but not least, if a @GLOBALS[k] is a function,
+      # then let's define it as a dynamic getter
+      #
+      # More information: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+      if typeof @GLOBALS[k] == "function"
+        getter = @GLOBALS[k]
+        Object.defineProperty @GLOBALS, k, get: => getter(@GLOBALS)
 
     @filterPublicGlobals(@_PUBLIC_GLOBALS_KEYS)
     @filterShellGlobals(@_SHELL_GLOBALS_KEYS)
