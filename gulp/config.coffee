@@ -44,6 +44,11 @@ module.exports = new class GulpConfig
         # By default: sha-code of the recent git commit.
         CODE_VERSION: execSync.exec("git rev-parse HEAD").stdout.trim()
 
+        # This is only for convenience.
+        # It will equal to "android" or "ios",
+        # while the gulp is running a task building the app for given platform
+        CORDOVA_PLATFORM: null
+
         # Current timestamp, used to get rid of unwanted http 304 requests.
         DEPLOY_TIME: Date.now()
 

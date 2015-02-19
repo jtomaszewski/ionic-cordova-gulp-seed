@@ -7,8 +7,13 @@ runSequence = require 'run-sequence'
 GLOBALS.AVAILABLE_PLATFORMS.forEach (platform) ->
   # Build the release and deploys it to the HTTP server.
   if gulp.tasks["deploy:release:#{platform}"]
-    gulp.task "release:#{platform}", "Release the #{platform} app", (cb) ->
-      runSequence "cordova:build-release:#{platform}", "cordova:sign-release:#{platform}", "deploy:release:#{platform}", cb
+    gulp.task "release:#{platform}",
+      "Release the #{platform} app",
+      (cb) ->
+        runSequence "cordova:build-release:#{platform}",
+                    "cordova:sign-release:#{platform}",
+                    "deploy:release:#{platform}",
+                    cb
 
 
 releaseTasks = ["deploy:rollbar-sourcemaps", "release:android", "release:ios"]
