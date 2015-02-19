@@ -40,8 +40,7 @@ if GLOBALS.ANDROID_DEPLOY_APPBIN_PATH
   androidDeployReleaseTasks.push "deploy:server:android"
 
 
-if androidDeployReleaseTasks.length > 0
-  gulp.task "deploy:release:android", "Deploy the Android app", androidDeployReleaseTasks
+gulp.task "deploy:release:android", "Deploy the Android app", androidDeployReleaseTasks
 
 
 
@@ -67,5 +66,4 @@ if GLOBALS.IOS_DEPLOY_APPBIN_PATH
   gulp.task "deploy:server:ios", "Deploy the .ipa binary file to #{GLOBALS.IOS_DEPLOY_APPBIN_PATH}", shell.task(cmd)
   iosDeployReleaseTasks.push "deploy:server:ios"
 
-if iosDeployReleaseTasks.length > 0
-  gulp.task "deploy:release:ios", "Deploy the iOS app", iosDeployReleaseTasks
+gulp.task "deploy:release:ios", "Deploy the iOS app", iosDeployReleaseTasks
