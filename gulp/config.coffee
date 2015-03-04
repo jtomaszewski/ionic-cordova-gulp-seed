@@ -119,11 +119,6 @@ module.exports = new class GulpConfig
         # CORDOVA_GOOGLE_ANALYTICS_ID: "UA-123123-2"
         # GOOGLE_ANALYTICS_ID: "UA-123123-1"
         # GOOGLE_ANALYTICS_HOST: "ionicstarter.com"
-
-        # If defined, we'll deploy the app to testflight after compiling the release.
-        # TESTFLIGHT_API_TOKEN: "123"
-        # TESTFLIGHT_TEAM_TOKEN: "456"
-        # TESTFLIGHT_DISTRIBUTION_LISTS: "IonicStarterTesters"
       }
     }
 

@@ -28,7 +28,7 @@ if GLOBALS.TESTFAIRY_API_KEY
     env \
     TESTFAIRY_API_KEY='#{GLOBALS.TESTFAIRY_API_KEY}' \
     TESTER_GROUPS='#{GLOBALS.TESTFAIRY_TESTER_GROUPS}' \
-    utils/testfairy-upload.sh #{androidReleaseFile}
+    utils/testfairy-upload-android.sh #{androidReleaseFile}
   """)
   androidDeployReleaseTasks.push "deploy:testfairy:android"
 
@@ -49,16 +49,14 @@ iosDeployReleaseTasks = []
 iosReleaseFile = "platforms/ios/#{GLOBALS.BUNDLE_NAME}.ipa"
 
 
-if GLOBALS.TESTFLIGHT_API_TOKEN
-  gulp.task "deploy:testflight:ios", "Deploy the iOS binary to TestFlight", shell.task("curl http://testflightapp.com/api/builds.json \
-    -F file=@#{iosReleaseFile} \
-    -F api_token='#{GLOBALS.TESTFLIGHT_API_TOKEN}' \
-    -F team_token='#{GLOBALS.TESTFLIGHT_TEAM_TOKEN}' \
-    -F notes='This build was uploaded via the upload API' \
-    -F notify=True \
-    -F distribution_lists='#{GLOBALS.TESTFLIGHT_DISTRIBUTION_LISTS}' \
-  ")
-  iosDeployReleaseTasks.push "deploy:testflight:ios"
+if GLOBALS.TESTFAIRY_API_KEY
+  gulp.task "deploy:testfairy:ios", "Deploy the .ipa binary file to TestFairy", shell.task("""
+    env \
+    TESTFAIRY_API_KEY='#{GLOBALS.TESTFAIRY_API_KEY}' \
+    TESTER_GROUPS='#{GLOBALS.TESTFAIRY_TESTER_GROUPS}' \
+    utils/testfairy-upload-ios.sh #{iosReleaseFile}
+  """)
+  iosDeployReleaseTasks.push "deploy:testfairy:ios"
 
 
 if GLOBALS.IOS_DEPLOY_APPBIN_PATH
