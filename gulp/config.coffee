@@ -64,6 +64,12 @@ module.exports = new class GulpConfig
         # By default, application runs on :4400 port.
         HTTP_SERVER_PORT: 4400
 
+        # Optionally, you can define a proxy server:
+        #   all requests to "http://localhost:4400/api/xxx"
+        #   will be redirected to "https://ionic.starter.com/xxx"
+        # PROXY_ADDRESS: "https://ionic.starter.com"
+        # PROXY_ROUTE: "/api"
+
         # If true, we'll open the app in the browser after running the server.
         OPEN_IN_BROWSER: true
 
