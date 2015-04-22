@@ -1,7 +1,7 @@
 gulp = require("gulp")
 gutil = require("gulp-util")
 extend = require("extend")
-execSync = require("execSync")
+exec = require("sync-exec")
 os = require("os")
 
 module.exports = new class GulpConfig
@@ -24,7 +24,7 @@ module.exports = new class GulpConfig
         ANGULAR_APP_NAME: "ionicstarter"
 
         # Base path to this project's directory. Generated automatically.
-        APP_ROOT: execSync.exec("pwd").stdout.trim() + "/"
+        APP_ROOT: exec("pwd").stdout.trim() + "/"
 
         # By default, we compile all html/css/js files into www/ directory.
         BUILD_DIR: (GLOBALS) ->
@@ -42,7 +42,7 @@ module.exports = new class GulpConfig
 
         # Marks the current code version. Used in uploading sourcemaps to Rollbar.
         # By default: sha-code of the recent git commit.
-        CODE_VERSION: execSync.exec("git rev-parse HEAD").stdout.trim()
+        CODE_VERSION: exec("git rev-parse HEAD").stdout.trim()
 
         # This is only for convenience.
         # It will equal to "android" or "ios",
@@ -56,7 +56,7 @@ module.exports = new class GulpConfig
         HTTP_SERVER_IP: (->
           # Try to detect IP address in user's network.
           # If not, fallback to 127.0.0.1 .
-          localIp = execSync.exec("(ifconfig wlan 2>/dev/null || ifconfig en0) | grep inet | grep -v inet6 | awk '{print $2}' | sed 's/addr://g'").stdout.trim()
+          localIp = exec("(ifconfig wlan 2>/dev/null || ifconfig en0) | grep inet | grep -v inet6 | awk '{print $2}' | sed 's/addr://g'").stdout.trim()
           localIp = "127.0.0.1" unless parseInt(localIp) > 0
           localIp
         )()
