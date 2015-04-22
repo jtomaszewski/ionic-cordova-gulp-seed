@@ -15,7 +15,7 @@ GLOBALS.AVAILABLE_PLATFORMS.forEach (platform) ->
                   cb
 
 
-releaseTasks = ["deploy:rollbar-sourcemaps", "release:android", "release:ios"]
+releaseTasks = ["deploy:rollbar-sourcemaps:enable", "release:android", "release:ios"]
   .filter (taskName) -> !!gulp.tasks[taskName]
 
 if releaseTasks.length > 0
