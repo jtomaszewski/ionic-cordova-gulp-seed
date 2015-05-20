@@ -69,6 +69,8 @@ module.exports = new class GulpConfig
         #   will be redirected to "https://ionic.starter.com/xxx"
         # PROXY_ADDRESS: "https://ionic.starter.com"
         # PROXY_ROUTE: "/api"
+        PROXY_ADDRESS: null
+        PROXY_ROUTE: null
 
         # If true, we'll open the app in the browser after running the server.
         OPEN_IN_BROWSER: true
@@ -89,6 +91,8 @@ module.exports = new class GulpConfig
         # If defined, we'll deploy the app to testfairy after compiling the release.
         # TESTFAIRY_API_KEY: "123"
         # TESTFAIRY_TESTER_GROUPS: "IonicStarterTesters"
+        TESTFAIRY_API_KEY: null
+        TESTFAIRY_TESTER_GROUPS: null
       },
 
       development: {
@@ -236,11 +240,11 @@ module.exports = new class GulpConfig
     Object.keys(@GLOBALS).forEach (k) =>
       # You can replace any of @GLOBALS by defining ENV variable in your command line,
       # f.e. `BUNDLE_ID="com.different.bundleid" gulp`
-      @GLOBALS[k] = process.env[k] if process.env[k]? && @GLOBALS[k]?
+      @GLOBALS[k] = process.env[k] if process.env[k]?
 
       # You can also do this in this way:
       # `gulp --BUNDLE_ID="com.different.bundleid"`
-      @GLOBALS[k] = gulp.env[k] if gulp.env[k]? && @GLOBALS[k]?
+      @GLOBALS[k] = gulp.env[k] if gulp.env[k]?
 
       # Last but not least, if a @GLOBALS[k] is a function,
       # then let's define it as a dynamic getter
