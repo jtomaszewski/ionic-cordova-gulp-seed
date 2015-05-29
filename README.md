@@ -1,4 +1,5 @@
 # Features
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/jtomaszewski/ionic-cordova-gulp-seed?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 * Application can be run in a local http server, or emulated/released to Android/iOS
 * A lot of useful gulp tasks, like:
