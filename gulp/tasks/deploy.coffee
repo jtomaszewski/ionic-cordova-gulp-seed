@@ -20,7 +20,7 @@ deploy_release_cmd = (from, to, to_url) ->
 
 # Android deployment
 androidDeployReleaseTasks = []
-androidReleaseFile = "platforms/android/ant-build/MainActivity-release.apk"
+androidReleaseFile = "platforms/android/build/outputs/apk/android-release.apk"
 
 
 if GLOBALS.TESTFAIRY_API_KEY

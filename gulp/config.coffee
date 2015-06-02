@@ -10,14 +10,6 @@ module.exports = new class GulpConfig
       defaults: {
         BUNDLE_VERSION: "1.0.0"
 
-        # Change to "1" if you want to use Crosswalk on Android.
-        #
-        # NOTE See hooks/after_platform_add/020_migrate_android_to_crosswalk.sh ,
-        #      to configure it first.
-        # NOTE You need to recreate platforms/android/ project whenever you change it
-        #      (by running `run `gulp cordova:clear`).
-        ANDROID_CROSSWALK_MODE: "0"
-
         AVAILABLE_PLATFORMS: ["ios", "android"]
 
         # The name of your angular app you're going to use in `angular.module("")`
@@ -157,7 +149,6 @@ module.exports = new class GulpConfig
     #
     # The filtered globals will be available under GulpConfig.SHELL_GLOBALS.
     @_SHELL_GLOBALS_KEYS = [
-      "ANDROID_CROSSWALK_MODE"
       "BUNDLE_ID"
       "BUNDLE_NAME"
       "BUNDLE_VERSION"

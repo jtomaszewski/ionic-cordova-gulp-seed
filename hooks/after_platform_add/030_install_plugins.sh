@@ -21,13 +21,14 @@ function install_plugin {
 # NOW, LET'S INSTALL PLUGINS
 
 # Some basic cordova plugins
-# install_plugin "android ios" org.apache.cordova.console || exit $?
-# install_plugin "android ios" org.apache.cordova.device || exit $?
-# install_plugin "android ios" org.apache.cordova.device-orientation || exit $?
-# install_plugin "android ios" org.apache.cordova.geolocation || exit $?
-# install_plugin "android ios" org.apache.cordova.inappbrowser || exit $?
-# install_plugin "android ios" org.apache.cordova.network-information || exit $?
-install_plugin "android ios" org.apache.cordova.splashscreen || exit $?
+# install_plugin "android ios" cordova-plugin-console || exit $?
+# install_plugin "android ios" cordova-plugin-device || exit $?
+# install_plugin "android ios" cordova-plugin-device-orientation || exit $?
+# install_plugin "android ios" cordova-plugin-geolocation || exit $?
+# install_plugin "android ios" cordova-plugin-inappbrowser || exit $?
+# install_plugin "android ios" cordova-plugin-network-information || exit $?
+install_plugin "android ios" cordova-plugin-splashscreen || exit $?
+install_plugin "android ios" cordova-plugin-whitelist || exit $?
 
 # Created by authors of Ionic, fixes keyboard issues on iOS
 install_plugin "android ios" vendor/plugins/ionic-plugins-keyboard || exit $?
