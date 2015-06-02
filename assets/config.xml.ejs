@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="<%= BUNDLE_ID %>" 
-        version="<%= BUNDLE_VERSION %>" 
-        android-versionCode="<%= BUNDLE_VERSION.replace(/\./g, '') %>" 
-        ios-bundleVersion="<%= BUNDLE_VERSION %>" 
-        xmlns="http://www.w3.org/ns/widgets" 
+<widget id="<%= BUNDLE_ID %>"
+        version="<%= BUNDLE_VERSION %>"
+        android-versionCode="<%= BUNDLE_VERSION.replace(/\./g, '') %>"
+        ios-bundleVersion="<%= BUNDLE_VERSION %>"
+        xmlns="http://www.w3.org/ns/widgets"
         xmlns:cdv="http://cordova.apache.org/ns/1.0">
 
     <name><%= BUNDLE_NAME %></name>
@@ -17,8 +17,10 @@
     <!-- This page will be shown at the beginning when the app is launched. -->
     <content src="index.html" />
 
-    <!-- Access all origins (watch out for CORS attacks!) -->
-    <access origin="*" subdomains="true" />
+    <!-- Security options -->
+    <!-- (see https://github.com/apache/cordova-plugin-whitelist for details) -->
+    <!-- Don't block any requests -->
+    <access origin="*" />
 
     <!-- Some small old and new fixes for cordova  -->
     <!-- (some of them aren't needed anymore, but let's keep them here anyway) -->
