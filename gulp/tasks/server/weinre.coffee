@@ -6,6 +6,7 @@ childProcess = require 'child_process'
 {GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
 gulp.task "weinre", "Run a Weinre debugger server", ->
+  return unless GLOBALS.WEINRE_ADDRESS
   [weinreHost, weinrePort] = GLOBALS.WEINRE_ADDRESS.split(":")
 
   args = ["--httpPort=#{weinrePort}", "--boundHost=#{weinreHost}"]
