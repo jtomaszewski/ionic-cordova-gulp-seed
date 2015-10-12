@@ -65,9 +65,9 @@ GLOBALS.AVAILABLE_PLATFORMS.forEach (platform) ->
         "Signs the release of iOS app with '#{GLOBALS.IOS_PROVISIONING_PROFILE}' and compiles it to 'platforms/ios/#{GLOBALS.BUNDLE_NAME}.ipa' binary file"
         ->
           shell.task("xcrun -sdk iphoneos PackageApplication \
-            -v platforms/ios/build/device/#{GLOBALS.BUNDLE_NAME}.app \
-            -o #{GLOBALS.APP_ROOT}platforms/ios/#{GLOBALS.BUNDLE_NAME}.ipa \
-            --embed #{GLOBALS.IOS_PROVISIONING_PROFILE}")()
+            -v \"platforms/ios/build/device/#{GLOBALS.BUNDLE_NAME}.app\" \
+            -o \"#{GLOBALS.APP_ROOT}platforms/ios/#{GLOBALS.BUNDLE_NAME}.ipa\" \
+            --embed \"#{GLOBALS.IOS_PROVISIONING_PROFILE}\"")()
   else
     gulp.task "cordova:sign-release:#{platform}", false, []
 
