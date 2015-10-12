@@ -14,7 +14,7 @@ uglify = require 'gulp-uglify'
 uploadSourcemapsToRollbar = ->
   shouldUploadRollbarSourcemaps = !!+GLOBALS.UPLOAD_SOURCEMAPS_TO_ROLLBAR && !!GLOBALS.ROLLBAR_SERVER_ACCESS_TOKEN
   gulpIf(shouldUploadRollbarSourcemaps, rollbar({
-    accessToken: (GLOBALS.ROLLBAR_SERVER_ACCESS_TOKEN ? "none")
+    accessToken: (GLOBALS.ROLLBAR_SERVER_ACCESS_TOKEN || "none")
     version: GLOBALS.CODE_VERSION
     sourceMappingURLPrefix: GLOBALS.ROLLBAR_SOURCEMAPS_URL_PREFIX + "/js"
   }))
