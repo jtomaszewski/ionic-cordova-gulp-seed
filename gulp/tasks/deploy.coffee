@@ -28,7 +28,7 @@ if GLOBALS.TESTFAIRY_API_KEY
     env \
     TESTFAIRY_API_KEY='#{GLOBALS.TESTFAIRY_API_KEY}' \
     TESTER_GROUPS='#{GLOBALS.TESTFAIRY_TESTER_GROUPS}' \
-    utils/testfairy-upload-android.sh #{androidReleaseFile}
+    utils/testfairy-upload-android.sh \"#{androidReleaseFile}\"
   """)
   androidDeployReleaseTasks.push "deploy:testfairy:android"
 
@@ -54,7 +54,7 @@ if GLOBALS.TESTFAIRY_API_KEY
     env \
     TESTFAIRY_API_KEY='#{GLOBALS.TESTFAIRY_API_KEY}' \
     TESTER_GROUPS='#{GLOBALS.TESTFAIRY_TESTER_GROUPS}' \
-    utils/testfairy-upload-ios.sh #{iosReleaseFile}
+    utils/testfairy-upload-ios.sh \"#{iosReleaseFile}\"
   """)
   iosDeployReleaseTasks.push "deploy:testfairy:ios"
 
