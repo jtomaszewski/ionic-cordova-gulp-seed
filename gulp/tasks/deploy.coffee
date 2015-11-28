@@ -23,7 +23,7 @@ androidDeployReleaseTasks = []
 androidReleaseFile = "platforms/android/build/outputs/apk/android-release.apk"
 
 
-if GLOBALS.TESTFAIRY_API_KEY
+if GLOBALS.TESTFAIRY_API_KEY && GLOBALS.TESTFAIRY_TESTER_GROUPS
   gulp.task "deploy:testfairy:android", "Deploy the .apk binary file to TestFairy", shell.task("""
     env \
     TESTFAIRY_API_KEY='#{GLOBALS.TESTFAIRY_API_KEY}' \
@@ -49,7 +49,7 @@ iosDeployReleaseTasks = []
 iosReleaseFile = "platforms/ios/#{GLOBALS.BUNDLE_NAME}.ipa"
 
 
-if GLOBALS.TESTFAIRY_API_KEY
+if GLOBALS.TESTFAIRY_API_KEY && GLOBALS.TESTFAIRY_TESTER_GROUPS
   gulp.task "deploy:testfairy:ios", "Deploy the .ipa binary file to TestFairy", shell.task("""
     env \
     TESTFAIRY_API_KEY='#{GLOBALS.TESTFAIRY_API_KEY}' \
