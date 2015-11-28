@@ -8,6 +8,11 @@ module.exports = new class GulpConfig
   constructor: ->
     @_GLOBALS_DEFAULTS = {
       defaults: {
+        # If true, then we'll mark this app release as a debug version
+        # (for example, we'll add ".dbg" to BUNDLE_NAME,
+        #  if we're running/emulating a --debug version of the cordova app)
+        DEBUG: false
+
         BUNDLE_VERSION: "1.0.0"
 
         AVAILABLE_PLATFORMS: ["ios", "android"]

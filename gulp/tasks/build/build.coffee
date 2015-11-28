@@ -7,6 +7,7 @@ runSequence = require 'run-sequence'
 # Run 'set-debug' as the first task, to enable debug version.
 # Example: `gulp set-debug cordova:run:android`
 gulp.task "set-debug", false, ->
+  GLOBALS.DEBUG = true
   if GLOBALS.BUNDLE_ID.indexOf(".debug") == -1
     GLOBALS.BUNDLE_ID += ".debug"
     GLOBALS.BUNDLE_NAME += "Dbg"
