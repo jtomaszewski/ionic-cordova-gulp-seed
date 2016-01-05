@@ -19,6 +19,12 @@
 
     <!-- Security options -->
     <!-- (see https://github.com/apache/cordova-plugin-whitelist for details) -->
+
+    <!-- We'll optionally navigate to a browsersync server - allow for it, if exists -->
+    <% if(HTTP_SERVER_IP && HTTP_SERVER_PORT) { %>
+    <allow-navigation href="http://<%= HTTP_SERVER_IP %>:<%= HTTP_SERVER_PORT %>/index.html" />
+    <% } %>
+
     <!-- Don't block any requests -->
     <access origin="*" />
 

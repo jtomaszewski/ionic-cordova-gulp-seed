@@ -149,6 +149,11 @@ module.exports = new class GulpConfig
       "WEINRE_ADDRESS"
     ]
 
+    @_PUBLIC_GLOBALS_KEYS = @_PUBLIC_GLOBALS_KEYS.concat([
+      "HTTP_SERVER_IP"
+      "HTTP_SERVER_PORT"
+    ]) unless gulp.env.appstore
+
     # _SHELL_GLOBALS_KEYS defines which @GLOBALS
     #   will be passed to some of the shell tasks (f.e. those in tasks/cordova.coffee).
     #
@@ -169,6 +174,8 @@ module.exports = new class GulpConfig
       styles: ['app/css/**/*.scss']
       scripts:
         vendor: [
+          "assets/components/urijs/src/URI.js"
+
           "assets/components/ionic/release/js/ionic.js"
           "assets/components/angular/angular.js"
           "assets/components/angular-animate/angular-animate.js"
