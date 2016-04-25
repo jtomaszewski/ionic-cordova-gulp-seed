@@ -4,16 +4,25 @@ runSequence = require 'run-sequence'
 {GLOBALS, PUBLIC_GLOBALS, PATHS, DESTINATIONS} = require "../../config"
 
 
-# Run 'set-debug' as the first task, to enable debug version.
-# Example: `gulp set-debug cordova:run:android`
+# Run 'set-as-debug' as the first task, to enable debug version.
+# Example: `gulp set-as-debug cordova:run:android`
+gulp.task "set-as-debug", false, ->
+  unless gulp.env.appstore || gulp.env.release
+    GLOBALS.SET_AS_DEBUG ?= true
+
 gulp.task "set-debug", false, ->
-  GLOBALS.DEBUG = true
-  if GLOBALS.BUNDLE_ID.indexOf(".debug") == -1
-    GLOBALS.BUNDLE_ID += ".debug"
-    GLOBALS.BUNDLE_NAME += "Dbg"
+  unless gulp.env.appstore || gulp.env.release
+    if !!+GLOBALS.SET_AS_DEBUG
+      GLOBALS.DEBUG = true
+
+  if GLOBALS.DEBUG
+    if GLOBALS.BUNDLE_ID.indexOf(".debug") == -1
+      console.log ">> set-debug gulp task >> Adding .debug to the GLOBALS.BUNDLE_ID"
+      GLOBALS.BUNDLE_ID += ".debug"
+      GLOBALS.BUNDLE_NAME += "Dbg"
 
 
-gulp.task "build-debug", false, ["set-debug", "build"]
+gulp.task "build-debug", false, ["set-as-debug", "set-debug", "build"]
 
 
 gulp.task "build", "Compile all the contents of ./#{GLOBALS.BUILD_DIR}/", (cb) ->

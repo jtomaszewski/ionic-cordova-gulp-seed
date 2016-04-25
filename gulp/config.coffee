@@ -11,6 +11,8 @@ module.exports = new class GulpConfig
         # If true, then we'll mark this app release as a debug version
         # (for example, we'll add ".dbg" to BUNDLE_NAME,
         #  if we're running/emulating a --debug version of the cordova app)
+        SET_AS_DEBUG: null
+
         DEBUG: false
 
         BUNDLE_VERSION: "1.0.0"
@@ -152,7 +154,7 @@ module.exports = new class GulpConfig
     @_PUBLIC_GLOBALS_KEYS = @_PUBLIC_GLOBALS_KEYS.concat([
       "HTTP_SERVER_IP"
       "HTTP_SERVER_PORT"
-    ]) unless gulp.env.appstore
+    ]) unless gulp.env.appstore || gulp.env.release
 
     # _SHELL_GLOBALS_KEYS defines which @GLOBALS
     #   will be passed to some of the shell tasks (f.e. those in tasks/cordova.coffee).
