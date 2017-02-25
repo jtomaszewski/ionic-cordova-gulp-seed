@@ -33,21 +33,21 @@ GLOBALS.AVAILABLE_PLATFORMS.forEach (platform) ->
   # Build and emulate.
   gulp.task "cordova:emulate:#{platform}",
     "Emulates the app on #{platform} (runs `cordova emulate #{platform}`)",
-    ["cordova:platform-add:#{platform}", "build-debug", "watch", "serve"],
+    ["cordova:platform-add:#{platform}", "build-debug"].concat(if GLOBALS.REMOTE_LIVERELOAD then ["watch", "serve"] else []),
     ->
       shell.task(generateEnvCommand() + "node_modules/.bin/cordova emulate #{platform}")()
 
   # Build and run on connected device.
   gulp.task "cordova:run:#{platform}",
     "Runs the app debug version on #{platform} (runs `cordova run #{platform} --device`)",
-    ["cordova:platform-add:#{platform}", "build-debug", "watch", "serve"],
+    ["cordova:platform-add:#{platform}", "build-debug"].concat(if GLOBALS.REMOTE_LIVERELOAD then ["watch", "serve"] else []),
     ->
       shell.task(generateEnvCommand() + "node_modules/.bin/cordova run #{platform} --device")()
 
   # Same as cordova:run, but use release version, not debug.
   gulp.task "cordova:run-release:#{platform}",
     "Runs the app release version on #{platform} (runs `cordova run #{platform} --device --release`)",
-    ["cordova:platform-add:#{platform}", "build-release", "watch", "serve"],
+    ["cordova:platform-add:#{platform}", "build-release"].concat(if GLOBALS.REMOTE_LIVERELOAD then ["watch", "serve"] else []),
     ->
       shell.task(generateEnvCommand() + "node_modules/.bin/cordova run #{platform} --device --release")()
 
@@ -70,4 +70,3 @@ GLOBALS.AVAILABLE_PLATFORMS.forEach (platform) ->
             --embed \"#{GLOBALS.IOS_PROVISIONING_PROFILE}\"")()
   else
     gulp.task "cordova:sign-release:#{platform}", false, []
-
