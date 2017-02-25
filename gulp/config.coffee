@@ -243,6 +243,13 @@ module.exports = new class GulpConfig
     @GLOBALS = require('extend') true, {}, @_GLOBALS_DEFAULTS.defaults, (@_GLOBALS_DEFAULTS[gutil.env.env || "development"] || {})
 
     Object.keys(@GLOBALS).forEach (k) =>
+      # If a @GLOBALS[k] is a function,
+      # then let's use it as a dynamic getter
+      # (More information: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
+      if typeof @GLOBALS[k] == "function"
+        getter = @GLOBALS[k]
+        Object.defineProperty @GLOBALS, k, get: => getter(@GLOBALS)
+
       # You can replace any of @GLOBALS by defining ENV variable in your command line,
       # f.e. `BUNDLE_ID="com.different.bundleid" gulp`
       @GLOBALS[k] = process.env[k] if process.env[k]?
@@ -250,14 +257,6 @@ module.exports = new class GulpConfig
       # You can also do this in this way:
       # `gulp --BUNDLE_ID="com.different.bundleid"`
       @GLOBALS[k] = gulp.env[k] if gulp.env[k]?
-
-      # Last but not least, if a @GLOBALS[k] is a function,
-      # then let's define it as a dynamic getter
-      #
-      # More information: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
-      if typeof @GLOBALS[k] == "function"
-        getter = @GLOBALS[k]
-        Object.defineProperty @GLOBALS, k, get: => getter(@GLOBALS)
 
     @filterPublicGlobals(@_PUBLIC_GLOBALS_KEYS)
     @filterShellGlobals(@_SHELL_GLOBALS_KEYS)
