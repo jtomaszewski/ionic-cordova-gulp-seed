@@ -10,7 +10,6 @@ GLOBALS.AVAILABLE_PLATFORMS.forEach (platform) ->
     "Release the #{platform} app",
     (cb) ->
       runSequence "cordova:build-release:#{platform}",
-                  "cordova:sign-release:#{platform}",
                   "deploy:release:#{platform}",
                   cb
 

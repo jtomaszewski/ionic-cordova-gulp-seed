@@ -59,6 +59,7 @@ GLOBALS.AVAILABLE_PLATFORMS.forEach (platform) ->
       shell.task(generateEnvCommand() + "node_modules/.bin/cordova build #{platform} --release" + ((" --device" if platform == "ios") || ""))()
 
   # Sign the release.
+  # NOTE no longer needed since xcode 8 uses automatic code signing (cordova ios 4.3.0)
   if platform == "ios"
     if GLOBALS.IOS_PROVISIONING_PROFILE
       gulp.task "cordova:sign-release:ios",
