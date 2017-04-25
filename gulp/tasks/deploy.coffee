@@ -46,7 +46,7 @@ gulp.task "deploy:release:android", "Deploy the Android app", androidDeployRelea
 
 # IOS deployment
 iosDeployReleaseTasks = []
-iosReleaseFile = "platforms/ios/#{GLOBALS.BUNDLE_NAME}.ipa"
+iosReleaseFile = "platforms/ios/build/device/#{GLOBALS.BUNDLE_NAME}.ipa"
 
 
 if GLOBALS.TESTFAIRY_API_KEY && GLOBALS.TESTFAIRY_TESTER_GROUPS
